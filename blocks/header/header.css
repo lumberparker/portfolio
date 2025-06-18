@@ -34,7 +34,7 @@
 
 /* Header Brand */
 .header__brand-logo {
-    width: 300 dpx;
+    width: 300px;
     height: auto;
     background: url('path/to/logo.svg') no-repeat center center;
     background-size: contain;
