@@ -1,0 +1,240 @@
+/* Projects Block */
+.projects {
+    padding: 5rem 0;
+    background: #f9fafb;
+}
+
+.projects__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Projects Header */
+.projects__header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.projects__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.projects__subtitle {
+    font-size: 1.125rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Projects Grid */
+.projects__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Project Card */
+.projects__card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.projects__card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Project Image */
+.projects__image {
+    position: relative;
+    overflow: hidden;
+}
+
+.projects__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.projects__card:hover .projects__img {
+    transform: scale(1.1);
+}
+
+.projects__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+}
+
+.projects__card:hover .projects__overlay {
+    opacity: 1;
+}
+
+.projects__links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.projects__link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1f2937;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.projects__link:hover {
+    background: white;
+    transform: translateY(-2px);
+}
+
+/* Project Content */
+.projects__content {
+    padding: 1.5rem;
+}
+
+.projects__card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+}
+
+.projects__description {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Project Tech */
+.projects__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.projects__tech-badge {
+    padding: 0.25rem 0.5rem;
+    background: #dbeafe;
+    color: #1e40af;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Project Features */
+.projects__features {
+    margin-bottom: 1rem;
+}
+
+.projects__features-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.projects__features-list {
+    list-style: none;
+    color: #6b7280;
+    font-size: 0.75rem;
+    padding: 0;
+    margin: 0;
+}
+
+.projects__features-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.projects__features-list li::before {
+    content: "•";
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+/* Project Stats */
+.projects__stats {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.projects__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.projects__stat-icon {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.projects__stat-value {
+    color: #6b7280;
+    font-size: 0.75rem;
+}
+
+/* View More */
+.projects__view-more {
+    text-align: center;
+}
+
+.projects__view-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #3b82f6, #0891b2);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.projects__view-more-btn:hover {
+    background: linear-gradient(135deg, #2563eb, #0e7490);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+    .projects__grid {
+        grid-template-columns: 1fr;
+    }
+}
