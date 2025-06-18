@@ -14,7 +14,10 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-
+.header__brand-logo.scrolled {
+    filter: brightness(0) saturate(100%) invert(22%) sepia(87%) saturate(2222%) hue-rotate(203deg) brightness(95%) contrast(101%);
+    transition: filter 0.3s;
+}
 /* Header Navigation */
 .header__nav {
     width: 100%;
@@ -30,8 +33,12 @@
 }
 
 /* Header Brand */
-.header__brand {
-    text-decoration: none;
+.header__brand-logo {
+    width: 300 dpx;
+    height: auto;
+    background: url('path/to/logo.svg') no-repeat center center;
+    background-size: contain;
+    transition: transform 0.3s ease;
 }
 
 .header__brand-text {
@@ -115,7 +122,14 @@
 }
 
 /* Mobile Responsive */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+    .header__brand-logo {
+        width: 200px;
+        height: auto;
+        background: url('path/to/logo.svg') no-repeat center center;
+        background-size: contain;
+        transition: transform 0.3s ease;
+    }
     .header__menu {
         position: fixed;
         top: 100%;
