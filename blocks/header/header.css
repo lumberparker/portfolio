@@ -123,6 +123,9 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    .header{
+        margin-bottom: 20px;
+    }
     .header__brand-logo {
         width: 200px;
         height: auto;
