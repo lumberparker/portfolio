@@ -376,6 +376,15 @@ document.querySelectorAll('a[href^="http"]').forEach(link => {
     });
 });
 
+window.addEventListener('scroll', function() {
+    const logo = document.querySelector('.header__brand-logo');
+    if (window.scrollY > 50) {
+      logo.classList.add('scrolled');
+    } else {
+      logo.classList.remove('scrolled');
+    }
+  });
+
 // Console message for developers
 console.log(`
 🚀 Welcome to Rodney Parker's Portfolio!

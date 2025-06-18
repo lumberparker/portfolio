@@ -17,6 +17,7 @@
 .header__brand-logo.scrolled {
     filter: brightness(0) saturate(100%) invert(22%) sepia(87%) saturate(2222%) hue-rotate(203deg) brightness(95%) contrast(101%);
     transition: filter 0.3s;
+    color: #3b82f6;
 }
 /* Header Navigation */
 .header__nav {
