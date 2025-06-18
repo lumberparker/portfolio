@@ -124,6 +124,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .header{
+   
         margin-bottom: 100px;
     }
     .header__brand-logo {
