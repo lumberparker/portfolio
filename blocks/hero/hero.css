@@ -247,7 +247,7 @@
     }
     
     @media screen and (max-width: 640px) {
-     .hero__title {
+   `  .hero__title {
             font-size: 1.5rem;
         }
         
