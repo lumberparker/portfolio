@@ -187,7 +187,7 @@
 
 /* Contact Form */
 .contact__form {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 1.5rem;
 }
