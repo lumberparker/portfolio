@@ -124,10 +124,10 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .header{
-        margin-bottom: 20px;
+        margin-bottom: 100px;
     }
     .header__brand-logo {
-        width: 200px;
+        width: 150px;
         height: auto;
         background: url('path/to/logo.svg') no-repeat center center;
         background-size: contain;
