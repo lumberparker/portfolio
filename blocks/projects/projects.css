@@ -40,13 +40,19 @@
 
 /* Project Card */
 .projects__card {
+    display: none;
     background: white;
     border-radius: 0.75rem;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
-
+.projects__card:first-child {
+    display: block;
+    width: 33%;
+    margin-right: auto;
+    margin-left: auto;
+}
 .projects__card:hover {
     transform: translateY(-8px);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
