@@ -243,4 +243,9 @@
     .projects__grid {
         grid-template-columns: 1fr;
     }
+    .projects__card:first-child {
+    display: block;
+    width: 66%;
+    margin-right: auto;
+    margin-left: auto
 }
