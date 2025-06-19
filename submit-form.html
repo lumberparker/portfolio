@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rodney Parker - Full Stack Developer Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="header__nav">
+            <div class="header__container">
+                <a href="https://berriesandmango.com" target="_blank" rel="noopener">
+                    <img class="header__brand-logo" src="images/logo.jpeg" alt="Rodney Parker Logo">
+                  </a>
+                
+                <ul class="header__menu" id="headerMenu">
+                    <li class="header__menu-item">
+                        <a href="#home" class="header__menu-link">Home</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="#about" class="header__menu-link">About</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="#skills" class="header__menu-link">Skills</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="#projects" class="header__menu-link">Projects</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="#contact" class="header__menu-link">Contact</a>
+                    </li>
+                </ul>
+                
+                <button class="header__toggle" id="headerToggle" aria-label="Toggle navigation menu">
+                    <span class="header__hamburger"></span>
+                    <span class="header__hamburger"></span>
+                    <span class="header__hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero__background">
+            <div class="hero__shape hero__shape--1"></div>
+            <div class="hero__shape hero__shape--2"></div>
+        </div>
+        
+        <div class="hero__container">
+            <div class="hero__content">
+                <div class="hero__image">
+                    <div class="hero__profile-ring">
+                        <img src="images/profile.jpeg" 
+                             alt="Rodney Parker - Full Stack Developer" 
+                             class="hero__profile-img">
+                    </div>
+                </div>
+                
+                <h1 class="hero__title">
+                    Thank You for<span class="hero__title--gradient">Your Message!</span>
+                </h1>
+                
+                <p class="hero__subtitle">I'll get back to you.</p>
+                
+           
+                
+                </div>
+                
+                <div class="hero__social">
+                    <a href="https://linkedin.com/in/rodney-p-3a2b73136" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m16 8 6-6M22 2l-7 7-3-3"></path>
+                            <path d="M16 2h6v6"></path>
+                            <path d="M22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h6"></path>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/lumberparker" class="hero__social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </a>
+                    <a href="mailto:rodney@berriesandmango.com" class="hero__social-link" aria-label="Email Contact">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                
+                <button class="hero__scroll-indicator" aria-label="Scroll to next section">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6,9 12,15 18,9"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+        
+        <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__info">
+                    <h3 class="footer__name">Rodney Parker</h3>
+                    <p class="footer__title">Full Stack Developer</p>
+                    <p class="footer__made-with">
+                        Made with <span class="footer__heart">❤️</span> using HTML, CSS & JavaScript
+                    </p>
+                </div>
+                
+                <div class="footer__actions">
+                    <button class="footer__scroll-top" aria-label="Scroll to top">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="18,15 12,9 6,15"></polyline>
+                        </svg>
+                    </button>
+                    <p class="footer__copyright">© 2025 Rodney Parker. All rights reserved.</p>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__tech">
+                    Built with modern web technologies for optimal performance and accessibility
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>
