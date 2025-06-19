@@ -157,14 +157,31 @@ if (contactForm) {
         `;
         
         try {
-            // Simulate form submission (replace with actual API call)
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            // Show success message
-            showPopup('Success', 'Message sent successfully! I\'ll get back to you soon.', 'success');
-            
-            // Reset form
-            contactForm.reset();
+            try {
+                const response = await fetch('/.netlify/functions/send-email', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                });
+              
+                const result = await response.json();
+              
+                if (!response.ok) {
+                  throw new Error(result.message || 'Unknown error');
+                }
+              
+                // Show success message
+                showPopup('Success', 'Message sent successfully! I\'ll get back to you soon.', 'success');
+              
+                // Reset form
+                contactForm.reset();
+              
+              } catch (error) {
+                showPopup('Error', 'There was an error sending your message. Please try again.', 'error');
+              }
+              
             
         } catch (error) {
             showPopup('Error', 'There was an error sending your message. Please try again.', 'error');
