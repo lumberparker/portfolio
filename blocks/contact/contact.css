@@ -35,13 +35,12 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
-    width: 1000px;
 }
 
 /* Contact Info */
 .contact__info {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 2rem;
 }
 
@@ -173,7 +172,6 @@
 
 /* Contact Form Section */
 .contact__form-section {
-    display: none;
     background: #f9fafb;
     padding: 2rem;
     border-radius: 0.75rem;
@@ -189,7 +187,7 @@
 
 /* Contact Form */
 .contact__form {
-
+    display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
