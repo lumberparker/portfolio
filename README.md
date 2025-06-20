@@ -249,9 +249,9 @@ Feel free to fork this project and customize it for your own portfolio. If you m
 ## 📞 Support
 
 For questions or support, please contact:
-- Email: rodney.parker@example.com
-- LinkedIn: [linkedin.com/in/rodneyparker](https://linkedin.com/in/rodneyparker)
-- GitHub: [github.com/rodneyparker](https://github.com/rodneyparker)
+- Email: rodney@berriesandmango.com
+- LinkedIn:[https://www.linkedin.com/in/rodney-p-3a2b73136] (https://www.linkedin.com/in/rodney-p-3a2b73136)
+- GitHub: [github.com/lumberparker](https://github.com/lumberparker)
 
 ---
 
