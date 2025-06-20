@@ -35,12 +35,13 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
+    width: 1000px;
 }
 
 /* Contact Info */
 .contact__info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 2rem;
 }
 
