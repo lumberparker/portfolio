@@ -1,7 +1,7 @@
 /* Skills Block */
 .skills {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(180deg, #132970 0%, rgb(9, 20, 57) 50%, #091336 100%); ;
 }
 
 .skills__container {
@@ -19,13 +19,13 @@
 .skills__title {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    color: #1f2937;
+    color: #519aff;
     margin-bottom: 1rem;
 }
 
 .skills__subtitle {
     font-size: 1.125rem;
-    color: #6b7280;
+    color: #ffffff;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -114,7 +114,7 @@
 .skills__additional-title {
     font-size: 1.75rem;
     font-weight: 700;
-    color: #1f2937;
+    color: #519aff;
     margin-bottom: 2rem;
 }
 

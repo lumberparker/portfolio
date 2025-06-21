@@ -1,7 +1,7 @@
 /* About Block */
 .about {
     padding: 5rem 0;
-    background: #f9fafb;
+    background: linear-gradient(180deg, #18338c 0%, rgb(19, 40, 111) 50%, #132970 100%); 
 }
 
 .about__container {
@@ -19,13 +19,13 @@
 .about__title {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    color: #1f2937;
+    color: #519aff;
     margin-bottom: 1rem;
 }
 
 .about__subtitle {
     font-size: 1.125rem;
-    color: #6b7280;
+    color: #f7f7f7;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -43,7 +43,7 @@
     background: white;
     padding: 2rem;
     border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px rgba(253, 186, 186, 0.05);
 }
 
 .about__heading {

@@ -1,7 +1,7 @@
 /* Projects Block */
 .projects {
     padding: 5rem 0;
-    background: #f9fafb;
+    background: linear-gradient(180deg, #091336 0%, #050b1f 50%, #02050d 100%); 
 }
 
 .projects__container {
@@ -19,13 +19,13 @@
 .projects__title {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    color: #1f2937;
+    color: #519aff;
     margin-bottom: 1rem;
 }
 
 .projects__subtitle {
     font-size: 1.125rem;
-    color: #6b7280;
+    color: #ffffff;
     max-width: 600px;
     margin: 0 auto;
 }
@@ -206,6 +206,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     text-align: center;
+    display: none;
 }
 
 .projects__stat {
