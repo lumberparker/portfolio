@@ -1,3 +1,5 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "workbench.colorTheme": "Red",
+    "workbench.preferredDarkColorTheme": "Default High Contrast Light"
 }
