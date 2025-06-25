@@ -13,10 +13,13 @@ const scrollIndicator = document.querySelector('.hero__scroll-indicator');
 
 // Header scroll effect
 window.addEventListener('scroll', () => {
+    const logo = document.querySelector('.header__brand-logo');
     if (window.scrollY > 50) {
         header.classList.add('header--scrolled');
+        if (logo) logo.classList.add('scrolled');
     } else {
         header.classList.remove('header--scrolled');
+        if (logo) logo.classList.remove('scrolled');
     }
 });
 
@@ -294,7 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { selector: '[data-skill="aws"]', level: 78 },
         { selector: '[data-skill="webpack"]', level: 85 },
         { selector: '[data-skill="testing"]', level: 88 },
-        { selector: '[data-skill="figma"]', level: 80 }
+        { selector: '[data-skill="figma"]', level: 80 },
+        { selector: '[data-skill="illustrator"]', level: 100 },
+        { selector: '[data-skill="photoshop"]', level: 100 },
+        { selector: '[data-skill="branding"]', level: 100 }
     ];
     
     skillData.forEach(skill => {

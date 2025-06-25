@@ -10,8 +10,9 @@
 }
 
 .header--scrolled {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .header__brand-logo.scrolled {
@@ -39,7 +40,7 @@
     height: auto;
     background: url('path/to/logo.svg') no-repeat center center;
     background-size: contain;
-    transition: transform 0.3s ease;
+    transition: transform 0.8s ease;
 }
 
 .header__brand-text {

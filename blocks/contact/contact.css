@@ -53,7 +53,7 @@
 
 .contact__items {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.5rem;
 }
 
@@ -133,6 +133,8 @@
     background: linear-gradient(135deg, #dbeafe, #ccfbf1);
     border-radius: 0.75rem;
     border: 1px solid #bfdbfe;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .contact__availability-title {
@@ -175,8 +177,11 @@
     background: #f9fafb;
     padding: 2rem;
     border-radius: 0.75rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     height: auto;
+
 }
 
 .contact__form-title {

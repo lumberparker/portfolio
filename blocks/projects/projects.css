@@ -33,8 +33,8 @@
 /* Projects Grid */
 .projects__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     margin-bottom: 3rem;
 }
 
@@ -46,12 +46,13 @@
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+    width: 100%;
 }
 .projects__card:first-child {
     display: block;
-    width: 33%;
-    margin-right: auto;
-    margin-left: auto;
+}
+.projects__card:nth-child(2) {
+    display: block;
 }
 .projects__card:hover {
     transform: translateY(-8px);
@@ -62,25 +63,27 @@
 .projects__image {
     position: relative;
     overflow: hidden;
-
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
 }
 #hexaparks{
     background-color: antiquewhite;
     padding: 10px;
-
+}
+.projects__card:nth-child(2) .projects__image {
+    background-color: #eb2f2c;
+    padding: 10px;
 }
 .projects__img-wrapper {
     display: flex;
     flex-direction: column;
-
-    
 }
 .projects__img {
-    width: 100%;
+    width: auto;
+    height: 50px;
     object-fit: contain;
-    align-items: center;    /* vertical centering */
-    justify-content: center; /* horizontal centering (optional) */
     transition: transform 0.3s ease;
 }
 
@@ -256,10 +259,14 @@
 @media (max-width: 480px) {
     .projects__grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     .projects__card:first-child {
-    display: block;
-    width: 66%;
-    margin-right: auto;
-    margin-left: auto
+        display: block;
+        width: 100%;
+    }
+    .projects__card:nth-child(2) {
+        display: block;
+        width: 100%;
+    }
 }
