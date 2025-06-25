@@ -16,9 +16,9 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .header__brand-logo.scrolled {
-    filter: brightness(0) saturate(100%) invert(22%) sepia(87%) saturate(2222%) hue-rotate(203deg) brightness(95%) contrast(101%);
+    filter: brightness(0) saturate(100%) invert(73%) sepia(72%) saturate(1234%) hue-rotate(5deg) brightness(96%) contrast(95%);
     transition: filter 0.3s;
-    color: #3b82f6;
+    color: #e6b70c;
 }
 /* Header Navigation */
 .header__nav {
@@ -86,7 +86,7 @@
 }
 
 .header--scrolled .header__menu-link {
-    color: #519aff;
+    color: #e6b70c;
 }
 
 .header__menu-link:hover {
