@@ -285,14 +285,20 @@
 }
 
 /* Tablet Responsive */
-@media (min-width: 640px) {
-    .contact__form-row {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
 @media (min-width: 768px) {
     .contact__content {
         grid-template-columns: 1fr 1fr;
     }
+    .contact__items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
+}
+@media (min-width: 640px) {
+    .contact__form-row {
+        grid-template-columns: 1fr 1fr;
+    
+    }
+}
+
