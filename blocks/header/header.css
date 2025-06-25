@@ -57,7 +57,7 @@
 /* Header Menu */
 .header__menu {
     display: flex;
-    gap: 2rem;
+    gap: 10px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -65,6 +65,7 @@
 
 .header__menu-item {
     margin: 0;
+   font-size: small;
 }
 
 .header__menu-link {
