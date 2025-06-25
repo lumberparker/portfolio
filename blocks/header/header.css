@@ -36,11 +36,14 @@
 
 /* Header Brand */
 .header__brand-logo {
-    width: 300px;
+    width: 100%;
     height: auto;
     background: url('path/to/logo.svg') no-repeat center center;
     background-size: contain;
     transition: transform 0.8s ease;
+}
+.header__brand-container{
+    width: 20%;
 }
 
 .header__brand-text {
@@ -65,7 +68,9 @@
 
 .header__menu-item {
     margin: 0;
-   font-size: small;
+   font-size: 1vw;
+    font-weight: 500;
+    position: relative;
 }
 
 .header__menu-link {
