@@ -75,7 +75,7 @@
     height: 140px;
     margin: 0 auto;
     padding: 4px;
-    background: linear-gradient(135deg, #be1bff, #b28d08);
+    background: #e7b70c;
     border-radius: 50%;
     animation: hero-pulse 3s ease-in-out infinite;
 }
@@ -102,7 +102,7 @@
 }
 
 .hero__title--gradient {
-    background: linear-gradient(135deg, #be1bff, #b28d08);
+    background: linear-gradient(100deg, #be1bff, #e7b70c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
