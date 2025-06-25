@@ -139,10 +139,11 @@
     }
     .header__menu {
         position: fixed;
-        top: 100%;
+        top: 70px;
         left: 0;
         right: 0;
         background: rgba(255, 255, 255, 0.95);
+        border-radius: 5px;
         backdrop-filter: blur(10px);
         flex-direction: column;
         padding: 1rem;
