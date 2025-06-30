@@ -16,7 +16,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .header__brand-logo.scrolled {
-    filter: brightness(0) saturate(100%) invert(73%) sepia(72%) saturate(1234%) hue-rotate(5deg) brightness(96%) contrast(95%);
+|    filter: brightness(0) saturate(100%) invert(73%) sepia(72%) saturate(1234%) hue-rotate(5deg) brightness(96%) contrast(95%);
     transition: filter 0.3s;
     color: #e6b70c;
 }
