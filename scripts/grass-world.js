@@ -16,7 +16,7 @@ import {
   Fn, uniform, float, vec3, instancedArray, instanceIndex, uv,
   positionGeometry, positionWorld, positionWorldDirection, sin, cos, pow,
   smoothstep, mix, sqrt, select, hash, time, deltaTime, PI,
-  mx_noise_float, dot, normalize, max, cameraPosition,
+  mx_noise_float, dot, normalize, max,
 } from 'three/tsl';
 
 const root = document.documentElement;
@@ -25,8 +25,6 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 const FIELD_SIZE  = 46;
 const BLADE_COUNT = isMobile ? 45000 : 120000;
-const MIN_BLADE_DIST = 5.5;  // blades nearer than this to the camera fade out
-const MIN_CAM_Y = 6.0;       // camera never dips below the blade tips
 
 // Palette (mirrors the tokens in index.css)
 const SKY_TOP     = '#07040f';
@@ -265,14 +263,7 @@ async function initGrassWorld() {
     const blade = bladeData.element(instanceIndex);
     const dist  = sqrt(blade.x.mul(blade.x).add(blade.y.mul(blade.y)));
     const fade  = float(1).sub(smoothstep(fogEnd.sub(3.0), fogEnd.add(2.0), dist));
-    // Blades close to the lens dissolve so none ever fills the screen
-    // as a giant flat ribbon.
-    const cx    = blade.x.sub(cameraPosition.x);
-    const cz    = blade.y.sub(cameraPosition.z);
-    const cy    = cameraPosition.y;
-    const camD  = sqrt(cx.mul(cx).add(cz.mul(cz)).add(cy.mul(cy)));
-    const near  = smoothstep(float(MIN_BLADE_DIST), float(MIN_BLADE_DIST + 3.5), camD);
-    return smoothstep(float(0.0), float(0.1), uv().y).mul(fade).mul(near);
+    return smoothstep(float(0.0), float(0.1), uv().y).mul(fade);
   })();
   grassMat.transparent = true;
 
@@ -324,7 +315,7 @@ async function initGrassWorld() {
     [0.42,  2.5, 15.0,  4.0,  0.0,  0.0,  -1.0],  // bird's-eye
     [0.66, -3.0, 11.0,  7.0,  0.5,  0.0,  -1.0],  // drifting
     [0.84,  0.0,  8.0, 15.0,  0.0,  2.4,  -3.0],  // descending
-    [1.00,  0.0,  6.4, 19.0,  0.0,  3.9,  -8.0],  // back to the hero sunset
+    [1.00,  0.0,  6.4, 19.0,  0.0,  3.9,  -8.0],  // back to the hero sunset (never inside the grass)
   ];
   const ease = (t) => t * t * (3 - 2 * t);
   const cam  = { px: 0, py: 0, pz: 0, lx: 0, ly: 0, lz: 0 };
@@ -358,11 +349,7 @@ async function initGrassWorld() {
     lean.x += ((pointer.active ? pointer.x : 0) - lean.x) * lk;
     lean.y += ((pointer.active ? pointer.y : 0) - lean.y) * lk;
     const amt = reduceMotion ? 0 : 1;
-    camera.position.set(
-      cam.px + lean.x * 0.9 * amt,
-      Math.max(MIN_CAM_Y, cam.py + lean.y * 0.35 * amt),
-      cam.pz
-    );
+    camera.position.set(cam.px + lean.x * 0.9 * amt, cam.py + lean.y * 0.35 * amt, cam.pz);
     look.set(cam.lx + lean.x * 0.4 * amt, cam.ly, cam.lz);
     camera.lookAt(look);
   }
