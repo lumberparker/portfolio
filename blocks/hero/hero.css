@@ -193,13 +193,6 @@
     to { top: 110%; }
 }
 
-.hero__scroll-text {
-    font: 400 11px/1 var(--font-mono);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--fg-faint);
-    white-space: nowrap;
-}
 
 @media (max-width: 640px) {
     .hero {
@@ -209,9 +202,5 @@
 
     .hero__line--accent {
         padding-left: 0;
-    }
-
-    .hero__scroll-text {
-        display: none;
     }
 }
