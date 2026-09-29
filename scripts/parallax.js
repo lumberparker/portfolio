@@ -121,11 +121,28 @@
   if (document.documentElement.classList.contains('no-webgl')) buildFallback();
 
   // ── Pollen / fireflies ───────────────────────────────────────────────
+  // Each mote is a pre-rendered glow sprite (one per palette colour), so a
+  // frame is just a few dozen drawImage calls — no per-mote shadowBlur.
   var pollen = document.querySelector('[data-pollen]');
   var ctx = pollen && pollen.getContext('2d');
-  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   var motes = [];
-  var MAX_MOTES = coarse ? 40 : 110;
+  var MAX_MOTES = coarse ? 30 : 70;
+  var SPRITE = 32;
+
+  var sprites = PALETTE.map(function (c) {
+    var cv = document.createElement('canvas');
+    cv.width = cv.height = SPRITE;
+    var g = cv.getContext('2d');
+    var grad = g.createRadialGradient(SPRITE / 2, SPRITE / 2, 0, SPRITE / 2, SPRITE / 2, SPRITE / 2);
+    grad.addColorStop(0, '#fff');
+    grad.addColorStop(0.18, c);
+    grad.addColorStop(0.45, c + '55');
+    grad.addColorStop(1, c + '00');
+    g.fillStyle = grad;
+    g.fillRect(0, 0, SPRITE, SPRITE);
+    return cv;
+  });
 
   function sizePollen() {
     if (!pollen) return;
@@ -141,10 +158,10 @@
       x: x, y: y,
       vx: (Math.random() - 0.5) * (burst ? 1.2 : 0.25),
       vy: -(0.15 + Math.random() * (burst ? 0.9 : 0.35)),
-      r: 0.8 + Math.random() * 2.2,
+      size: 7 + Math.random() * 12,
       life: 0,
       max: 240 + Math.random() * 360,
-      c: PALETTE[(Math.random() * PALETTE.length) | 0],
+      s: sprites[(Math.random() * sprites.length) | 0],
       ph: Math.random() * Math.PI * 2
     });
   }
@@ -152,17 +169,23 @@
   var lastSpawn = 0;
   window.addEventListener('pointermove', function (e) {
     var now = performance.now();
-    if (now - lastSpawn < 28) return;
+    if (now - lastSpawn < 40) return;
     lastSpawn = now;
     spawn(e.clientX + (Math.random() - 0.5) * 16, e.clientY + (Math.random() - 0.5) * 16, true);
   }, { passive: true });
 
+  var pollenClear = true;
   function drawPollen() {
     if (!ctx) return;
     // Ambient drift up from the lower half of the screen
-    if (!reduce && Math.random() < 0.35) spawn(Math.random() * vw, vh * (0.55 + Math.random() * 0.5), false);
+    if (!reduce && Math.random() < 0.25) spawn(Math.random() * vw, vh * (0.55 + Math.random() * 0.5), false);
+    if (!motes.length) {
+      if (!pollenClear) { ctx.clearRect(0, 0, vw, vh); pollenClear = true; }
+      return;
+    }
 
     ctx.clearRect(0, 0, vw, vh);
+    pollenClear = false;
     ctx.globalCompositeOperation = 'lighter';
     for (var i = motes.length - 1; i >= 0; i--) {
       var m = motes[i];
@@ -173,19 +196,35 @@
       var t = m.life / m.max;
       if (t >= 1) { motes.splice(i, 1); continue; }
       var a = Math.sin(t * Math.PI) * (0.55 + 0.45 * Math.sin(m.ph * 3));
-      ctx.globalAlpha = Math.max(0, a);
-      ctx.fillStyle = m.c;
-      ctx.shadowColor = m.c;
-      ctx.shadowBlur = 12;
-      ctx.beginPath();
-      ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-      ctx.fill();
+      if (a <= 0.02) continue;
+      ctx.globalAlpha = a;
+      ctx.drawImage(m.s, m.x - m.size / 2, m.y - m.size / 2, m.size, m.size);
     }
     ctx.globalAlpha = 1;
-    ctx.shadowBlur = 0;
+  }
+
+  // ── Layout cache (read once per resize, never inside the frame) ──────
+  var bandBase = [];
+  var contactTop = 0;
+  function measure() {
+    bandBase = bandEls.map(function (band) {
+      return parseFloat(band.dataset.band) < 0 ? 0 : -band.scrollWidth * 0.25;
+    });
+    contactTop = contact ? contact.getBoundingClientRect().top + window.scrollY : 0;
+  }
+  measure();
+  window.addEventListener('resize', measure, { passive: true });
+  window.addEventListener('load', measure);
+  document.fonts && document.fonts.ready.then(measure);
+
+  // Only touch styles when a value actually changes
+  function setTranslate(el, v) {
+    if (el._t !== v) { el._t = v; el.style.translate = v; }
   }
 
   // ── Frame loop ───────────────────────────────────────────────────────
+  var lastVeil = '';
+
   function frame() {
     var y = window.scrollY;
 
@@ -193,47 +232,49 @@
     pointer.y += (target.y - pointer.y) * 0.06;
 
     if (!reduce) {
-      // Hero layers: only while the hero is on screen
+      // Reads first…
+      var bandRects = [];
+      for (var b = 0; b < bandEls.length; b++) bandRects.push(bandEls[b].getBoundingClientRect());
+      var imgRects = [];
+      for (var s = 0; s < speedEls.length; s++) imgRects.push(speedEls[s].parentElement.getBoundingClientRect());
+
+      // …then writes, so the browser never has to re-layout mid-frame.
       if (y < vh * 1.3) {
         for (var i = 0; i < depthEls.length; i++) {
-          var el = depthEls[i];
-          var d = parseFloat(el.dataset.depth);
-          var tx = pointer.x * d * 18;
-          var ty = -y * d * 0.55 + pointer.y * d * 10;
-          el.style.translate = tx.toFixed(1) + 'px ' + ty.toFixed(1) + 'px';
+          var d = parseFloat(depthEls[i].dataset.depth);
+          setTranslate(depthEls[i],
+            (pointer.x * d * 18).toFixed(1) + 'px ' + (-y * d * 0.55 + pointer.y * d * 10).toFixed(1) + 'px');
         }
       }
 
-      for (var b = 0; b < bandEls.length; b++) {
-        var band = bandEls[b];
-        var rect = band.getBoundingClientRect();
+      for (var bi = 0; bi < bandEls.length; bi++) {
+        var rect = bandRects[bi];
         if (rect.bottom < -200 || rect.top > vh + 200) continue;
-        var speed = parseFloat(band.dataset.band);
-        var offset = (rect.top + rect.height / 2 - vh / 2);
-        var base = speed < 0 ? 0 : -band.scrollWidth * 0.25;
-        band.style.translate = (base + offset * speed * 0.7).toFixed(1) + 'px 0';
+        var offset = rect.top + rect.height / 2 - vh / 2;
+        setTranslate(bandEls[bi],
+          (bandBase[bi] + offset * parseFloat(bandEls[bi].dataset.band) * 0.7).toFixed(1) + 'px 0');
       }
 
-      for (var s = 0; s < speedEls.length; s++) {
-        var img = speedEls[s];
-        var frameRect = img.parentElement.getBoundingClientRect();
-        if (frameRect.bottom < 0 || frameRect.top > vh) continue;
-        var center = frameRect.top + frameRect.height / 2 - vh / 2;
-        img.style.translate = '0 ' + (center * -parseFloat(img.dataset.speed)).toFixed(1) + 'px';
+      for (var si = 0; si < speedEls.length; si++) {
+        var fr = imgRects[si];
+        if (fr.bottom < 0 || fr.top > vh) continue;
+        var center = fr.top + fr.height / 2 - vh / 2;
+        setTranslate(speedEls[si], '0 ' + (center * -parseFloat(speedEls[si].dataset.speed)).toFixed(1) + 'px');
       }
 
       for (var f = 0; f < fallbackLayers.length; f++) {
         var L = fallbackLayers[f];
-        L.el.style.translate = (pointer.x * -L.speed * 40).toFixed(1) + 'px ' + (y * L.speed * 0.25).toFixed(1) + 'px';
+        setTranslate(L.el, (pointer.x * -L.speed * 40).toFixed(1) + 'px ' + (y * L.speed * 0.25).toFixed(1) + 'px');
       }
     }
 
     // Veil: deepen the meadow behind the dense middle sections, lift it
-    // again as the camera sinks into the grass at the contact section.
+    // again as the camera returns to the sunset at the contact section.
     if (vignette) {
       var into = clamp((y - vh * 0.5) / vh, 0, 1);
-      var out = contact ? clamp((y - (contact.offsetTop - vh * 1.2)) / vh, 0, 1) : 0;
-      vignette.style.setProperty('--veil', (0.5 * into * (1 - out)).toFixed(3));
+      var out = contact ? clamp((y - (contactTop - vh * 1.2)) / vh, 0, 1) : 0;
+      var veil = (0.5 * into * (1 - out)).toFixed(3);
+      if (veil !== lastVeil) { lastVeil = veil; vignette.style.setProperty('--veil', veil); }
     }
 
     drawPollen();

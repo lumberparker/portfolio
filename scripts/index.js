@@ -34,7 +34,7 @@
   window.addEventListener('meadow:ready', reveal);
   window.addEventListener('meadow:fallback', reveal);
   if (root.classList.contains('meadow-ready') || root.classList.contains('no-webgl')) reveal();
-  setTimeout(reveal, 4000);
+  setTimeout(reveal, 2500);
 
   // Stagger index for hero words
   document.querySelectorAll('.hero__word').forEach(function (w, i) {

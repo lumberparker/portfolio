@@ -24,7 +24,14 @@ const isMobile = window.innerWidth < 768;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const FIELD_SIZE  = 46;
-const BLADE_COUNT = isMobile ? 45000 : 120000;
+// Quality tier: fewer blades and a lower render resolution on phones and
+// modest hardware. Resolution then adapts at runtime to hold a smooth fps.
+const lowEnd = isMobile
+  || (navigator.hardwareConcurrency || 8) <= 4
+  || (navigator.deviceMemory || 8) <= 4;
+const BLADE_COUNT = isMobile ? 30000 : lowEnd ? 50000 : 80000;
+const MAX_DPR = Math.min(devicePixelRatio, isMobile || lowEnd ? 1 : 1.25);
+const MIN_DPR = 0.6;
 
 // Palette (mirrors the tokens in index.css)
 const SKY_TOP     = '#07040f';
@@ -66,8 +73,11 @@ async function initGrassWorld() {
   );
 
   // ── Renderer ───────────────────────────────────────────────────────
-  const renderer = new THREE.WebGPURenderer({ antialias: !isMobile });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, isMobile ? 1.25 : 1.75));
+  // No MSAA: thousands of thin blades make it very expensive, and the
+  // adaptive pixel ratio below keeps edges clean enough.
+  const renderer = new THREE.WebGPURenderer({ antialias: false, powerPreference: 'high-performance' });
+  let dpr = MAX_DPR;
+  renderer.setPixelRatio(dpr);
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
@@ -93,7 +103,7 @@ async function initGrassWorld() {
 
   const windSpeed            = uniform(reduceMotion ? 0.35 : 1.25);
   const windAmplitude        = uniform(reduceMotion ? 0.08 : 0.22);
-  const bladeWidth           = uniform(4.0);
+  const bladeWidth           = uniform(BLADE_COUNT < 60000 ? 5.2 : 4.6);  // wider when sparser
   const bladeTipWidth        = uniform(0.19);
   const bladeHeight          = uniform(1.55);
   const bladeHeightVariation = uniform(0.55);
@@ -259,13 +269,9 @@ async function initGrassWorld() {
     return mix(grass, fogColor, smoothstep(fogStart, fogEnd, dist));
   })();
 
-  grassMat.opacityNode = Fn(() => {
-    const blade = bladeData.element(instanceIndex);
-    const dist  = sqrt(blade.x.mul(blade.x).add(blade.y.mul(blade.y)));
-    const fade  = float(1).sub(smoothstep(fogEnd.sub(3.0), fogEnd.add(2.0), dist));
-    return smoothstep(float(0.0), float(0.1), uv().y).mul(fade);
-  })();
-  grassMat.transparent = true;
+  // Opaque on purpose: with depth writes the GPU skips hidden blades
+  // (early-z) instead of blending every layer of the field. Blades past
+  // the field edge already shrink to nothing and far ones fog out.
 
   const grass = new THREE.InstancedMesh(createBladeGeometry(), grassMat, BLADE_COUNT);
   grass.frustumCulled = false;
@@ -372,16 +378,47 @@ async function initGrassWorld() {
   root.classList.add('meadow-ready');
   window.dispatchEvent(new CustomEvent('meadow:ready'));
 
+  // Adaptive resolution: every second, step the pixel ratio down when
+  // frames run slow and back up when there is headroom.
+  let frameSum = 0, frameCount = 0;
+  function adaptQuality(dt) {
+    frameSum += dt;
+    frameCount++;
+    if (frameSum < 1) return;
+    const avgMs = (frameSum / frameCount) * 1000;
+    frameSum = 0;
+    frameCount = 0;
+    let next = dpr;
+    if (avgMs > 22 && dpr > MIN_DPR) next = Math.max(MIN_DPR, dpr - 0.15);
+    else if (avgMs < 13 && dpr < MAX_DPR) next = Math.min(MAX_DPR, dpr + 0.1);
+    if (next !== dpr) {
+      dpr = next;
+      renderer.setPixelRatio(dpr);
+    }
+  }
+
   const timer = new THREE.Timer();
-  renderer.setAnimationLoop(() => {
-    if (document.hidden) return;
+  function tick() {
     timer.update();
     const dt = Math.min(timer.getDelta(), 0.1);
     applyCamera(dt);
     updateMouseWorld();
     renderer.compute(computeUpdate);
     renderer.render(scene, camera);
-  });
+    adaptQuality(dt);
+  }
+
+  // Stop the GPU entirely while the tab is in the background.
+  function setRunning(on) {
+    if (on) {
+      timer.reset();
+      renderer.setAnimationLoop(tick);
+    } else {
+      renderer.setAnimationLoop(null);
+    }
+  }
+  document.addEventListener('visibilitychange', () => setRunning(!document.hidden));
+  setRunning(!document.hidden);
 }
 
 initGrassWorld().catch((err) => {
