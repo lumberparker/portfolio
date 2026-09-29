@@ -1,0 +1,76 @@
+/* =========================================================
+   Block: services
+   Three tilt cards, each tagged with a brand sticker.
+   ========================================================= */
+
+.services {
+    padding: var(--section-y) var(--gutter);
+}
+
+.services__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.service {
+    padding: clamp(28px, 3vw, 40px);
+    overflow: hidden;
+    transition: border-color 0.5s var(--ease);
+}
+
+.service:hover {
+    border-color: color-mix(in srgb, var(--c) 60%, transparent);
+}
+
+.service__sticker {
+    --s: 72px;
+    margin-bottom: 64px;
+    filter: drop-shadow(0 0 22px color-mix(in srgb, var(--c) 55%, transparent));
+    transition: transform 0.8s var(--ease);
+}
+
+.service:hover .service__sticker {
+    transform: rotate(-12deg) scale(1.12);
+}
+
+.service__title {
+    margin-bottom: 22px;
+    font: 700 clamp(26px, 2.4vw, 34px)/1.05 var(--font-body);
+    letter-spacing: -0.03em;
+}
+
+.service__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.service__list li {
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--fg-muted);
+    transition: color 0.3s, border-color 0.3s, background 0.3s;
+}
+
+.service:hover .service__list li {
+    border-color: color-mix(in srgb, var(--c) 40%, transparent);
+    color: var(--cream);
+}
+
+@media (max-width: 900px) {
+    .services__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service__sticker {
+        margin-bottom: 32px;
+    }
+}

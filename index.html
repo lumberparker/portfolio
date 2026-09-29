@@ -1,803 +1,375 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07040f">
     <meta name="description" content="Agencia creativa de diseño web, branding, tiendas en línea y UX/UI en México, Colombia, Argentina, EE. UU. y Canadá. Llevamos tu marca al siguiente nivel con soluciones digitales a la medida.">
     <meta name="keywords" content="estudio creativo, diseño web, branding, desarrollo e-commerce, UX/UI, Latinoamérica, México, Colombia, Argentina, Estados Unidos, Canadá">
     <meta name="author" content="Berries and Mango">
-    
+
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://berriesandmango.com/">
+    <meta property="og:url" content="https://web.berriesandmango.com/">
     <meta property="og:title" content="Estudio Creativo Berries and Mango: Diseño Web, Branding y UX/UI en Latinoamérica">
     <meta property="og:description" content="Diseño web profesional, branding y tiendas en línea. Sirviendo a clientes en México, Colombia, Argentina, EE. UU. y Canadá. Impulsamos tu presencia digital.">
-    <meta property="og:image" content="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1200">
-    
+    <meta property="og:image" content="https://web.berriesandmango.com/images/hexaparks.jpeg">
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://berriesandmango.com/">
+    <meta property="twitter:url" content="https://web.berriesandmango.com/">
     <meta property="twitter:title" content="Berries and Mango – Diseño Web & Branding en Latinoamérica">
     <meta property="twitter:description" content="Estudio creativo especializado en diseño web, tiendas en línea y UX/UI con clientes en México, Colombia, Argentina, EE. UU. y Canadá. Potenciamos tu marca digital.">
-    
+
     <title>Berries and Mango - Estudio de diseño web profesional</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.webgpu.js",
+            "three/tsl":    "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.tsl.js"
+        }
+    }
+    </script>
 </head>
-<body>
+<body class="page">
+
+    <!-- Fixed meadow behind everything: WebGPU canvas (grass-world.js) or
+         the layered SVG fallback (parallax.js). -->
+    <div class="meadow" aria-hidden="true">
+        <div class="meadow__fallback" data-meadow-fallback></div>
+        <div class="meadow__vignette"></div>
+    </div>
+    <canvas class="pollen" aria-hidden="true" data-pollen></canvas>
+
+    <!-- Loader -->
+    <div class="loader" data-loader aria-hidden="true">
+        <div class="loader__seed"></div>
+        <p class="loader__text">Sembrando el jardín…</p>
+    </div>
+
     <!-- Header -->
-    <header class="header" id="header">
-        <nav class="header__nav">
-            <div class="header__container">
-                <a class="header__brand-container" href="https://berriesandmango.com" target="_blank" rel="noopener">
-                    <img class="header__brand-logo" src="images/logo.jpeg" alt="Logotipo de Berries and Mango, estudio creativo de diseño web">
-                </a>
-                
-                <ul class="header__menu" id="headerMenu">
-                    <li class="header__menu-item">
-                        <a href="#home" class="header__menu-link">Inicio</a>
-                    </li>
-                    <li class="header__menu-item">
-                        <a href="#about" class="header__menu-link">Acerca de Nosotros</a>
-                    </li>
-                    <li class="header__menu-item">
-                        <a href="#skills" class="header__menu-link">Servicios</a>
-                    </li>
-                    <li class="header__menu-item">
-                        <a href="#projects" class="header__menu-link">Proyectos</a>
-                    </li>
-                    <li class="header__menu-item">
-                        <a href="#contact" class="header__menu-link">Trabajemos Juntos</a>
-                    </li>
-                </ul>
-                
-                <button class="header__toggle" id="headerToggle" aria-label="Toggle navigation menu">
-                    <span class="header__hamburger"></span>
-                    <span class="header__hamburger"></span>
-                    <span class="header__hamburger"></span>
-                </button>
-            </div>
+    <header class="header" id="header" data-header>
+        <nav class="header__nav" aria-label="Principal">
+            <a class="header__brand" href="https://berriesandmango.com" target="_blank" rel="noopener">
+                <img class="header__brand-logo" src="images/logo.svg" alt="Berries and Mango" width="146" height="64">
+            </a>
+            <ul class="header__menu" id="headerMenu">
+                <li><a href="#home" class="header__link">Inicio</a></li>
+                <li><a href="#about" class="header__link">Nosotros</a></li>
+                <li><a href="#services" class="header__link">Servicios</a></li>
+                <li><a href="#projects" class="header__link">Proyectos</a></li>
+            </ul>
+            <a href="#contact" class="header__cta" data-magnetic>Trabajemos juntos</a>
+            <button class="header__toggle" id="headerToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="headerMenu">
+                <span></span><span></span>
+            </button>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero__background">
-            <div class="hero__shape hero__shape--1"></div>
-            <div class="hero__shape hero__shape--2"></div>
-        </div>
-        
-        <div class="hero__container">
-            <div class="hero__content">
-                <div class="hero__image">
-                    <div class="hero__profile-ring">
-                        <img src="images/round-logo.jpeg" 
-                             alt="Equipo creativo de Berries and Mango, expertos en diseño y desarrollo web" 
-                             class="hero__profile-img">
-                    </div>
-                </div>
-                
-                <h1 class="hero__title">
-                    <span class="hero__title--gradient">Berries and Mango</span> te da la bienvenida!
+    <main>
+        <!-- ===================== HERO ===================== -->
+        <section class="hero" id="home" data-parallax-scope>
+            <!-- Floating brand stickers at different depths -->
+            <div class="hero__stickers" aria-hidden="true">
+                <span class="sticker sticker--berry"  style="--x:9%;  --y:24%; --s:92px;  --c:var(--berry);  --r:-14deg" data-depth="0.55"></span>
+                <span class="sticker sticker--mango"  style="--x:84%; --y:20%; --s:110px; --c:var(--mango);  --r:12deg"  data-depth="0.8"></span>
+                <span class="sticker sticker--eye"    style="--x:76%; --y:62%; --s:84px;  --c:var(--violet); --r:-6deg"  data-depth="0.35"></span>
+                <span class="sticker sticker--spark"  style="--x:18%; --y:66%; --s:44px;  --c:var(--yolk);   --r:0deg"   data-depth="1.1"></span>
+                <span class="sticker sticker--spark"  style="--x:64%; --y:12%; --s:28px;  --c:var(--mint);   --r:0deg"   data-depth="0.25"></span>
+                <span class="sticker sticker--amp"    style="--x:92%; --y:44%; --s:56px;  --c:var(--coral);  --r:8deg"   data-depth="0.6"></span>
+                <span class="sticker sticker--blob"   style="--x:4%;  --y:52%; --s:70px;  --c:var(--mint);   --r:20deg"  data-depth="0.9"></span>
+            </div>
+
+            <div class="hero__inner">
+                <p class="hero__eyebrow" data-depth="0.15">
+                    <span class="hero__dot"></span>
+                    Estudio de diseño y desarrollo web · Mérida, Yucatán
+                </p>
+
+                <h1 class="hero__title" data-depth="0.3">
+                    <span class="hero__line"><span class="hero__word">Sitios</span> <span class="hero__word">web</span> <span class="hero__word">que</span></span>
+                    <span class="hero__line hero__line--accent"><span class="hero__word">dan</span> <span class="hero__word">frutos.</span></span>
                 </h1>
-                
-                <p class="hero__subtitle">Diseño y Desarrollo Web</p>
-                
-                <p class="hero__description">
-                    Creamos sitios web atractivos e intuitivos que ayudan a las empresas a prosperar en línea. Nuestro equipo combina creatividad y experiencia técnica para ofrecer diseños adaptables y experiencias de usuario intuitivas, adaptadas a la marca de cada cliente.
-                </p>
-                
-                <div class="hero__buttons">
-                    <a href="#projects" class="hero__btn hero__btn--primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <circle cx="9" cy="9" r="2"></circle>
-                            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
-                        </svg>
-                        Nuestro Portafolio
-                    </a>
-                    <a href="#contact" class="hero__btn hero__btn--secondary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                            <polyline points="14,2 14,8 20,8"></polyline>
-                        </svg>
-                        Trabajemos Juntos
-                </div>
-                
-                <div class="hero__social">
-                    <a href="mailto:rodney@berriesandmango.com" 
-                       class="hero__social-link" aria-label="Email Contact">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-                
-                <button class="hero__scroll-indicator" aria-label="Scroll to next section">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6,9 12,15 18,9"></polyline>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about__container">
-            <div class="about__header">
-                <h2 class="about__title">Acerca de Nosotros</h2>
-                <p class="about__subtitle">
-                    Estudio de diseño creativo dedicado a crear experiencias web excepcionales.
+                <p class="hero__lede" data-depth="0.12">
+                    <strong>Berries and Mango</strong> te da la bienvenida. Creamos sitios web atractivos e intuitivos
+                    que ayudan a las empresas a prosperar en línea — creatividad y experiencia técnica,
+                    adaptadas a la marca de cada cliente.
                 </p>
+
+                <div class="hero__actions">
+                    <a href="#projects" class="btn btn--primary" data-magnetic>
+                        <span>Nuestro portafolio</span>
+                        <span class="btn__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a href="#contact" class="btn btn--ghost" data-magnetic>Trabajemos juntos</a>
+                </div>
             </div>
-            
-            <div class="about__content">
-                <div class="about__text">
-                    <h3 class="about__heading">Our Story</h3>
-                    <div class="about__paragraphs">
+
+            <a class="hero__scroll" href="#manifesto" aria-label="Ir a la siguiente sección">
+                <span class="hero__scroll-line"></span>
+                <span class="hero__scroll-text">Desliza · mueve el cursor sobre el pasto</span>
+            </a>
+        </section>
+
+        <!-- ===================== MARQUEE ===================== -->
+        <section class="band" aria-label="Lo que hacemos">
+            <div class="band__row" data-band="-1">
+                <span>Diseño web</span><i></i><span>Branding</span><i></i><span>UX / UI</span><i></i><span>E-commerce</span><i></i><span>Desarrollo</span><i></i><span>SEO</span><i></i>
+                <span>Diseño web</span><i></i><span>Branding</span><i></i><span>UX / UI</span><i></i><span>E-commerce</span><i></i><span>Desarrollo</span><i></i><span>SEO</span><i></i>
+            </div>
+            <div class="band__row band__row--outline" data-band="1">
+                <span>Visual mixology</span><i></i><span>Hecho en Yucatán</span><i></i><span>Visual mixology</span><i></i><span>Hecho en Yucatán</span><i></i>
+                <span>Visual mixology</span><i></i><span>Hecho en Yucatán</span><i></i><span>Visual mixology</span><i></i><span>Hecho en Yucatán</span><i></i>
+            </div>
+        </section>
+
+        <!-- ===================== ABOUT ===================== -->
+        <section class="about" id="about">
+            <div class="about__inner">
+                <p class="eyebrow" data-reveal>01 — Acerca de nosotros</p>
+                <h2 class="about__manifesto" id="manifesto" data-words>
+                    Desde 2020 cultivamos experiencias digitales únicas. Diseño innovador y desarrollo
+                    responsivo para que tu marca <em>conecte</em> con su público — y <em>crezca</em>.
+                </h2>
+
+                <div class="about__grid">
+                    <div class="about__story glass" data-reveal>
+                        <h3 class="about__heading">Nuestra historia</h3>
                         <p>
-                            Fundado en 2020, Berries and Mango es un estudio creativo de diseño web comprometido con la creación de experiencias digitales únicas. Nuestro equipo combina diseño innovador con desarrollo responsivo para ayudar a las empresas a conectar con su público.
+                            Berries and Mango es un estudio creativo de diseño web comprometido con la creación de
+                            experiencias digitales únicas. A lo largo de los años hemos colaborado con clientes de
+                            diversos sectores, convirtiendo conceptos en vibrantes realidades online.
                         </p>
                         <p>
-                            A lo largo de los años, hemos colaborado con clientes de diversos sectores, convirtiendo conceptos en vibrantes realidades online. Priorizamos el diseño limpio, la coherencia de marca y la interacción del usuario en cada proyecto.
-                        </p>
-                        <p>
-                            Nuestra filosofía es simple: diseñar pensando en el usuario. Nos centramos en la accesibilidad, el rendimiento y la estética para garantizar que cada sitio web que creamos tenga un aspecto excelente y funcione a la perfección en todos los dispositivos.
+                            Nuestra filosofía es simple: diseñar pensando en el usuario. Nos centramos en la
+                            accesibilidad, el rendimiento y la estética para que cada sitio se vea excelente y
+                            funcione a la perfección en todos los dispositivos.
                         </p>
                     </div>
-                    
-                    <div class="about__education">
-                        <h4 class="about__education-title"></h4>
-                        <ul class="about__education-list">
-                            <li>20+ Sitios Web de Clientes Completados (2020-2025)</li>
-                            <li>Adobe Certified Expert (Photoshop, Illustrator) - 2019</li>
+
+                    <dl class="about__stats">
+                        <div class="stat glass" data-reveal style="--d:0">
+                            <dt class="stat__label">Sitios entregados</dt>
+                            <dd class="stat__value"><span data-count="20">0</span>+</dd>
+                        </div>
+                        <div class="stat glass" data-reveal style="--d:1">
+                            <dt class="stat__label">Países con clientes</dt>
+                            <dd class="stat__value"><span data-count="5">0</span></dd>
+                        </div>
+                        <div class="stat glass" data-reveal style="--d:2">
+                            <dt class="stat__label">Adobe Certified Expert</dt>
+                            <dd class="stat__value stat__value--small">Photoshop · Illustrator</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <h3 class="about__values-heading" data-reveal>Valores fundamentales</h3>
+                <ul class="about__values">
+                    <li class="value glass" data-reveal data-tilt style="--d:0; --c:var(--mango)">
+                        <span class="value__index">01</span>
+                        <h4 class="value__title">Diseño enfocado en el usuario</h4>
+                        <p>Cada sitio es intuitivo, accesible y atractivo para quien lo usa.</p>
+                    </li>
+                    <li class="value glass" data-reveal data-tilt style="--d:1; --c:var(--berry)">
+                        <span class="value__index">02</span>
+                        <h4 class="value__title">Innovación</h4>
+                        <p>Exploramos nuevas tendencias y tecnologías para ofrecer soluciones de vanguardia.</p>
+                    </li>
+                    <li class="value glass" data-reveal data-tilt style="--d:2; --c:var(--violet)">
+                        <span class="value__index">03</span>
+                        <h4 class="value__title">Colaboración</h4>
+                        <p>Trabajo en equipo y comunicación abierta para resultados excepcionales.</p>
+                    </li>
+                    <li class="value glass" data-reveal data-tilt style="--d:3; --c:var(--mint)">
+                        <span class="value__index">04</span>
+                        <h4 class="value__title">Excelencia</h4>
+                        <p>Diseños de alta calidad que superan expectativas e impulsan el éxito.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================== SERVICES ===================== -->
+        <section class="services" id="services">
+            <div class="services__inner">
+                <header class="section-head">
+                    <p class="eyebrow" data-reveal>02 — Servicios</p>
+                    <h2 class="section-head__title" data-reveal>Lo que <em>sembramos</em></h2>
+                    <p class="section-head__lede" data-reveal>Combinamos diseño creativo y experiencia técnica para crear sitios web impactantes.</p>
+                </header>
+
+                <div class="services__grid">
+                    <article class="service glass" data-reveal data-tilt style="--d:0; --c:var(--mango)">
+                        <span class="service__sticker sticker sticker--mango" style="--c:var(--mango)" aria-hidden="true"></span>
+                        <h3 class="service__title">Diseño UI/UX</h3>
+                        <ul class="service__list">
+                            <li>User research</li><li>UI design en Figma</li><li>Prototipos</li>
+                            <li>Wireframes</li><li>Branding</li><li>Diseño responsivo</li>
                         </ul>
-                    </div>
-                </div>
-                
-                <div class="about__values">
-                    <h3 class="about__values-heading">Valores fundamentales</h3>
-                    <div class="about__values-cards">
-                        <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                    <path d="M2 17l10 5 10-5"></path>
-                                    <path d="M2 12l10 5 10-5"></path>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-title">Diseño enfocado en el usuario</h4>
-                            <p class="about__value-description">
-                                Diseñamos y desarrollamos teniendo en cuenta al usuario final, garantizando que cada sitio web sea intuitivo, accesible y atractivo.
-                            </p>
-                        </div>
-                        
-                        <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-title">Innovación</h4>
-                            <p class="about__value-description">
-                                Exploramos continuamente nuevas tendencias y tecnologías de diseño y desarrollo para ofrecer soluciones de vanguardia.
-                            </p>
-                        </div>
-                        
-                        <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-title">Colaboración</h4>
-                            <p class="about__value-description">
-                                Creemos en el poder del trabajo en equipo y la comunicación abierta para lograr resultados de diseño excepcionales.
-                            </p>
-                        </div>
-                        
-                        <div class="about__value-card">
-                            <div class="about__value-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="about__value-title">Excelencia</h4>
-                            <p class="about__value-description">
-                                Comprometidos a ofrecer diseños de alta calidad que superen las expectativas e impulsen el éxito.
-                            </p>
-                        </div>
-                    </div>
+                    </article>
+                    <article class="service glass" data-reveal data-tilt style="--d:1; --c:var(--berry)">
+                        <span class="service__sticker sticker sticker--berry" style="--c:var(--berry)" aria-hidden="true"></span>
+                        <h3 class="service__title">Desarrollo web</h3>
+                        <ul class="service__list">
+                            <li>HTML5 &amp; CSS3</li><li>JavaScript</li><li>Webflow</li>
+                            <li>WordPress</li><li>Optimización SEO</li><li>Performance</li>
+                        </ul>
+                    </article>
+                    <article class="service glass" data-reveal data-tilt style="--d:2; --c:var(--violet)">
+                        <span class="service__sticker sticker sticker--eye" style="--c:var(--violet)" aria-hidden="true"></span>
+                        <h3 class="service__title">Herramientas y tecnologías</h3>
+                        <ul class="service__list">
+                            <li>Figma</li><li>Adobe XD</li><li>Illustrator</li>
+                            <li>Photoshop</li><li>Tailwind CSS</li><li>Bootstrap</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Skills Section -->
-    <section class="skills" id="skills">
-        <div class="skills__container">
-            <div class="skills__header">
-                <h2 class="skills__title">Nuestros Servicios</h2>
-                <p class="skills__subtitle">
-                    Combinamos diseño creativo y experiencia técnica para crear sitios web impactantes
-                </p>
-            </div>
-            
-            <div class="skills__grid">
-                <div class="skills__category">
-                    <h3 class="skills__category-title">UI/UX Design</h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">User Research</span>
-                                <span class="skills__item-level">95%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="userresearch" data-level="95"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">UI Design (Figma)</span>
-                                <span class="skills__item-level">95%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="uidesign" data-level="95"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Prototyping</span>
-                                <span class="skills__item-level">90%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="prototyping" data-level="90"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Wireframing</span>
-                                <span class="skills__item-level">90%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="wireframing" data-level="90"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Branding</span>
-                                <span class="skills__item-level">100%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="branding" data-level="100"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Diseño Responsivo</span>
-                                <span class="skills__item-level">95%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="responsive" data-level="95"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills__category">
-                    <h3 class="skills__category-title">Desarrollo Web</h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">HTML5 & CSS3</span>
-                                <span class="skills__item-level">95%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="htmlcss" data-level="95"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">JavaScript</span>
-                                <span class="skills__item-level">90%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="javascript" data-level="90"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Webflow</span>
-                                <span class="skills__item-level">85%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="webflow" data-level="85"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">WordPress</span>
-                                <span class="skills__item-level">80%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="wordpress" data-level="80"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">SEO Optimization</span>
-                                <span class="skills__item-level">85%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="seo" data-level="85"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Performance Tuning</span>
-                                <span class="skills__item-level">90%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="performance" data-level="90"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills__category">
-                    <h3 class="skills__category-title">Herramientas de Diseño y tecnologías</h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Figma</span>
-                                <span class="skills__item-level">95%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="figma" data-level="95"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Adobe XD</span>
-                                <span class="skills__item-level">90%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="xd" data-level="90"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Bootstrap</span>
-                                <span class="skills__item-level">85%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="bootstrap" data-level="85"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Tailwind CSS</span>
-                                <span class="skills__item-level">85%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="tailwind" data-level="85"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Illustrator</span>
-                                <span class="skills__item-level">100%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="illustrator" data-level="80"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skills__item">
-                            <div class="skills__item-header">
-                                <span class="skills__item-name">Photoshop</span>
-                                <span class="skills__item-level">100%</span>
-                            </div>
-                            <div class="skills__bar">
-                                <div class="skills__progress" data-skill="photoshop" data-level="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skills__additional">
-                <h3 class="skills__additional-title">Tecnologías Adicionales</h3>
-                <div class="skills__tech-tags">
-                    <span class="skills__tech-tag">HTML 5</span>
-                    <span class="skills__tech-tag">CSS</span>
-                    <span class="skills__tech-tag">JavaScript</span>
-                    <span class="skills__tech-tag">Webflow</span>
-                    <span class="skills__tech-tag">WordPress</span>
-                    <span class="skills__tech-tag">Figma</span>
-                    <span class="skills__tech-tag">Adobe XD</span>
-                    <span class="skills__tech-tag">Diseño Responsivo</span>
-                    <span class="skills__tech-tag">SEO</span>
-                    <span class="skills__tech-tag">Illustrator</span>
-                    <span class="skills__tech-tag">Photoshop</span>
-                    <span class="skills__tech-tag">Bootstrap</span>
-                    <span class="skills__tech-tag">Tailwind CSS</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- ===================== PROJECTS ===================== -->
+        <section class="projects" id="projects">
+            <div class="projects__inner">
+                <header class="section-head">
+                    <p class="eyebrow" data-reveal>03 — Proyectos entregados</p>
+                    <h2 class="section-head__title" data-reveal>La <em>cosecha</em></h2>
+                    <p class="section-head__lede" data-reveal>Sitios web que hemos creado para nuestros clientes.</p>
+                </header>
 
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="projects__container">
-            <div class="projects__header">
-                <h2 class="projects__title">Proyectos Entregados</h2>
-                <p class="projects__subtitle">
-                    Sitios Web que hemos creado para nuestros clientes
-                </p>
-            </div>
-            
-            <div class="projects__grid">
-                <article class="projects__card">
-                    <div class="projects__image" id="hexaparks">
-                        <img src="/images/logo.png" 
-                             alt="Diseño web de Hexaparks, parque industrial en Jalisco" 
-                             class="projects__img">
-                        <div class="projects__overlay">
-                            <div class="projects__links">
-                                <a href="https://hexaparks.com" 
-                                   class="projects__link" target="_blank" rel="noopener noreferrer">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="m18 13 6-6-6-6"></path>
-                                        <path d="M3 7v10a2 2 0 0 0 2 2h14"></path>
-                                    </svg>
-                                    Demo en vivo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects__content">
-                        <h3 class="projects__card-title">Sitio Web Hexaparks</h3>
-                        <p class="projects__description">
-                            Un sitio web moderno para Hexaparks, un parque industrial en Jalisco. Diseñamos un sitio web limpio y responsivo para mostrar sus instalaciones y atraer inversionistas, priorizando una navegación clara y una imagen de marca sólida.
+                <article class="project" data-reveal>
+                    <a class="project__media" href="https://hexaparks.com" target="_blank" rel="noopener noreferrer" aria-label="Visitar Hexaparks">
+                        <img class="project__img" src="images/hexaparks.jpeg" alt="Diseño web de Hexaparks, parque industrial en Jalisco" data-speed="0.12" loading="lazy" width="2808" height="1264">
+                        <span class="project__visit">Ver sitio en vivo ↗</span>
+                    </a>
+                    <div class="project__body glass">
+                        <p class="project__num">01</p>
+                        <h3 class="project__title">Hexaparks</h3>
+                        <p class="project__desc">
+                            Un sitio web moderno para Hexaparks, un parque industrial en Jalisco. Diseño limpio y
+                            responsivo para mostrar sus instalaciones y atraer inversionistas, con navegación clara
+                            y una imagen de marca sólida.
                         </p>
-                        <div class="projects__tech">
-                            <span class="projects__tech-badge">HTML5</span>
-                            <span class="projects__tech-badge">CSS3</span>
-                            <span class="projects__tech-badge">JavaScript</span>
-                            <span class="projects__tech-badge">Figma</span>
-                        </div>
-                        <div class="projects__features">
-                            <h4 class="projects__features-title">Características principales:</h4>
-                            <ul class="projects__features-list">
-                                <li>Diseño claro y adaptable para dispositivos móviles y computadoras de escritorio</li>
-                                <li>Diseño centrado en la marca para mejorar la imagen corporativa</li>
-                                <li>Estructura de contenido optimizada para SEO</li>
-                                <li>Tiempos de carga rápidos con assets optimizados</li>
-                            </ul>
-                        </div>
-                        <div class="projects__stats">
-                            <div class="projects__stat">
-                                <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-                                </svg>
-                                <span class="projects__stat-value">98% Page Speed</span>
-                            </div>
-                            <div class="projects__stat">
-                                <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                </svg>
-                                <span class="projects__stat-value">4.8/5 Client Rating</span>
-                            </div>
-                            <div class="projects__stat">
-                                <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                                <span class="projects__stat-value">1.2k+ Visits</span>
-                            </div>
-                        </div>
+                        <ul class="project__tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Figma</li></ul>
+                        <dl class="project__stats">
+                            <div><dt>Page Speed</dt><dd>98%</dd></div>
+                            <div><dt>Calificación</dt><dd>4.8/5</dd></div>
+                            <div><dt>Visitas</dt><dd>1.2k+</dd></div>
+                        </dl>
                     </div>
                 </article>
 
-                <article class="projects__card">
-  <div class="projects__image" id="drinkxila">
-    <img src="/images/xila.jpeg" 
-         alt="Tienda en línea de XILA, marca mexicana de aperitivos artesanales" 
-         class="projects__img">
-    <div class="projects__overlay">
-      <div class="projects__links">
-        <a href="https://drinkxila.com" 
-           class="projects__link" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m18 13 6-6-6-6"></path>
-            <path d="M3 7v10a2 2 0 0 0 2 2h14"></path>
-          </svg>
-          Live Demo
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="projects__content">
-    <h3 class="projects__card-title">Drink XILA E-commerce</h3>
-    <p class="projects__description">
-Una experiencia de comercio electrónico visualmente atractiva para XILA, una marca mexicana de aperitivos a base de mezcal. Desarrollada en Shopify con un tema personalizado, el sitio equilibra el diseño editorial y el rendimiento para impulsar la narrativa, las ventas de productos y la autenticidad de la marca.    </p>
-    <div class="projects__tech">
-      <span class="projects__tech-badge">Shopify</span>
-      <span class="projects__tech-badge">Stripe</span>
-      <span class="projects__tech-badge">CSS3</span>
-      <span class="projects__tech-badge">Figma</span>
-    </div>
-    <div class="projects__features">
-      <h4 class="projects__features-title">Características principales:</h4>
-      <ul class="projects__features-list">
-        <li>Tema personalizado de Shopify con plantillas Liquid</li>
-        <li>Página de inicio de estilo editorial con imágenes llamativas</li>
-        <li>Optimizado para el comercio móvil y storytelling</li>
-        <li>Diseño de producto flexible para escalabilidad futura</li>
-      </ul>
-    </div>
-    <div class="projects__stats">
-      <div class="projects__stat">
-        <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-        </svg>
-        <span class="projects__stat-value">94% Page Speed</span>
-      </div>
-      <div class="projects__stat">
-        <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-        </svg>
-        <span class="projects__stat-value">5/5 Client Rating</span>
-      </div>
-      <div class="projects__stat">
-        <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-          <circle cx="9" cy="7" r="4"></circle>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-        </svg>
-        <span class="projects__stat-value">3.5k+ Monthly Visits</span>
-      </div>
-    </div>
-  </div>
-</article>
-
-
-                <article class="projects__card">
-                    <div class="projects__image">
-                        <img 
-                             src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" 
-                             alt="Dashboard interactivo de clima, visualización de datos meteorológicos" 
-                             class="projects__img">
-                        <div class="projects__overlay">
-                            <div class="projects__links">
-                                <a href="https://climate.example.com" class="projects__link" target="_blank" rel="noopener noreferrer">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="m18 13 6-6-6-6"></path>
-                                        <path d="M3 7v10a2 2 0 0 0 2 2h14"></path>
-                                    </svg>
-                                    Demo en vivo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="projects__content">
-                        <h3 class="projects__card-title">Climate Insights Dashboard</h3>
-                        <p class="projects__description">
-                            An interactive weather dashboard highlighting climate data. We focused on a clean, modern interface and responsive design to provide real-time forecasts and visualized weather information.
+                <article class="project project--flip" data-reveal>
+                    <a class="project__media project__media--brand" href="https://drinkxila.com" target="_blank" rel="noopener noreferrer" aria-label="Visitar Drink XILA">
+                        <span class="project__brand-bg" data-speed="0.18" aria-hidden="true"></span>
+                        <img class="project__logo" src="images/xila.jpeg" alt="Tienda en línea de XILA, marca mexicana de aperitivos artesanales" loading="lazy" width="223" height="120">
+                        <span class="project__visit">Ver sitio en vivo ↗</span>
+                    </a>
+                    <div class="project__body glass">
+                        <p class="project__num">02</p>
+                        <h3 class="project__title">Drink XILA</h3>
+                        <p class="project__desc">
+                            E-commerce para XILA, marca mexicana de aperitivos a base de mezcal. Tema personalizado
+                            de Shopify que equilibra el diseño editorial y el rendimiento para impulsar la narrativa,
+                            las ventas y la autenticidad de la marca.
                         </p>
-                        <div class="projects__tech">
-                            <span class="projects__tech-badge">React</span>
-                            <span class="projects__tech-badge">API Integration</span>
-                            <span class="projects__tech-badge">HTML5</span>
-                            <span class="projects__tech-badge">CSS3</span>
-                        </div>
-                        <div class="projects__features">
-                            <h4 class="projects__features-title">Key Features:</h4>
-                            <ul class="projects__features-list">
-                                <li>Interactive weather maps</li>
-                                <li>7-day detailed forecasts</li>
-                                <li>Weather alerts and notifications</li>
-                                <li>Location-based services</li>
-                                <li>Data visualization with charts</li>
-                            </ul>
-                        </div>
-                        <div class="projects__stats">
-                            <div class="projects__stat">
-                                <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"></polyline>
-                                </svg>
-                                <span class="projects__stat-value">96% Performance</span>
-                            </div>
-                            <div class="projects__stat">
-                                <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                </svg>
-                                <span class="projects__stat-value">4.7/5 Client Rating</span>
-                            </div>
-                            <div class="projects__stat">
-                                <svg class="projects__stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                                <span class="projects__stat-value">2.5k+ Users</span>
-                            </div>
-                        </div>
+                        <ul class="project__tags"><li>Shopify</li><li>Liquid</li><li>Stripe</li><li>Figma</li></ul>
+                        <dl class="project__stats">
+                            <div><dt>Page Speed</dt><dd>94%</dd></div>
+                            <div><dt>Calificación</dt><dd>5/5</dd></div>
+                            <div><dt>Visitas / mes</dt><dd>3.5k+</dd></div>
+                        </dl>
                     </div>
                 </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="contact__container">
-            <div class="contact__info">
-                <h3 class="contact__heading">Let's Talk</h3>
-                
-                <div class="contact__items">
-                    <a href="mailto:rodney@berriesandmango.com" class="contact__item">
-                        <div class="contact__icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                        </div>
-                        <div class="contact__details">
-                            <h4>Email</h4>
-                            <p>rodney@berriesandmango.com</p>
-                        </div>
-                    </a>
-                    
-                    <a href="tel:+529993912818" class="contact__item">
-                        <div class="contact__icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                            </svg>
-                        </div>
-                        <div class="contact__details">
-                            <h4>Teléfono/Whatsapp</h4>
-                            <p>+52 (999) 391-2828</p>
-                        </div>
-                    </a>
-                    
-                    <div class="contact__item">
-                        <div class="contact__icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                        </div>
-                        <div class="contact__details">
-                            <h4>Ubicación</h4>
-                            <p>Merida, Yucatán, MX</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact__social">
-                    <h4 class="contact__social-title">Síguenos</h4>
-                    <div class="contact__social-links">
-                            <a href="https://www.linkedin.com/in/rodney-p-3a2b73136/" class="contact__social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="m16 8 6-6M22 2l-7 7-3-3"></path>
-                                    <path d="M16 2h6v6"></path>
-                                    <path d="M22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h6"></path>
-                                </svg>
+        <!-- ===================== CONTACT ===================== -->
+        <section class="contact" id="contact">
+            <div class="contact__inner">
+                <header class="contact__head">
+                    <p class="eyebrow" data-reveal>04 — Trabajemos juntos</p>
+                    <h2 class="contact__title" data-reveal>¿Sembramos algo <em>juntos</em>?</h2>
+                    <p class="contact__status" data-reveal><span class="contact__status-dot"></span>Disponible para nuevos proyectos</p>
+                </header>
+
+                <div class="contact__grid">
+                    <ul class="contact__channels">
+                        <li data-reveal style="--d:0">
+                            <a class="channel glass" href="mailto:rodney@berriesandmango.com" data-magnetic>
+                                <span class="channel__label">Email</span>
+                                <span class="channel__value">rodney@berriesandmango.com</span>
                             </a>
-                            <a href="https://www.linkedin.com/company/berries-and-mango" class="contact__social-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                                </svg>
-                            </a>                    </div>
-                </div>
-                
-                <div class="contact__availability">
-                    <h4 class="contact__availability-title">Availability</h4>
-                    <p class="contact__availability-text">
-                        Actualmente disponible para nuevos proyectos y colaboraciones con clientes.
-                    </p>
-                    <div class="contact__availability-status">
-                        <div class="contact__status-dot"></div>
-                        <span class="contact__status-text">Disponible para nuevos proyectos</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact__form-section">
-                <h3 class="contact__form-title">Mándanos un mensaje</h3>
-                <form netlify action="/submit-form" method="POST" 
-                      class="contact__form" id="contactForm">
-                    <div class="contact__form-row">
-                        <div class="contact__form-group">
-                            <label for="name" class="contact__form-label">Nombre *</label>
-                            <input type="text" id="name" name="name" class="contact__form-input" required>
-                        </div>
-                        <div class="contact__form-group">
-                            <label for="email" class="contact__form-label">email *</label>
-                            <input type="email" id="email" name="email" class="contact__form-input" required>
-                        </div>
-                    </div>
-                    <div class="contact__form-row">
-                        <div class="contact__form-group">
-                            <label for="subject" class="contact__form-label">Tema *</label>
-                            <input type="text" id="subject" name="subject" class="contact__form-input" required>
-                        </div>
-                    </div>
-                    <div class="contact__form-group">
-                        <label for="message" class="contact__form-label">Mensaje *</label>
-                        <textarea id="message" name="message" class="contact__form-textarea" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="contact__submit-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22,2 15,22 11,13 2,9"></polygon>
-                        </svg>
-                        Enviar Mensaje
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+                        </li>
+                        <li data-reveal style="--d:1">
+                            <a class="channel glass" href="tel:+529993912818" data-magnetic>
+                                <span class="channel__label">Teléfono / WhatsApp</span>
+                                <span class="channel__value">+52 (999) 391-2828</span>
+                            </a>
+                        </li>
+                        <li data-reveal style="--d:2">
+                            <div class="channel glass">
+                                <span class="channel__label">Ubicación</span>
+                                <span class="channel__value">Mérida, Yucatán, MX</span>
+                            </div>
+                        </li>
+                        <li class="contact__social" data-reveal style="--d:3">
+                            <a href="https://www.linkedin.com/company/berries-and-mango" target="_blank" rel="noopener noreferrer">LinkedIn — Berries and Mango ↗</a>
+                            <a href="https://www.linkedin.com/in/rodney-p-3a2b73136/" target="_blank" rel="noopener noreferrer">LinkedIn — Rodney ↗</a>
+                        </li>
+                    </ul>
 
-    <!-- Footer -->
+                    <form class="form glass" name="contact" method="POST" action="/submit-form" data-netlify="true" netlify-honeypot="bot-field" data-reveal>
+                        <input type="hidden" name="form-name" value="contact">
+                        <p class="form__hp"><label>No llenar: <input name="bot-field"></label></p>
+                        <h3 class="form__title">Mándanos un mensaje</h3>
+                        <div class="form__row">
+                            <label class="form__field">
+                                <input class="form__input" type="text" name="name" placeholder=" " required autocomplete="name">
+                                <span class="form__label">Nombre *</span>
+                            </label>
+                            <label class="form__field">
+                                <input class="form__input" type="email" name="email" placeholder=" " required autocomplete="email">
+                                <span class="form__label">Email *</span>
+                            </label>
+                        </div>
+                        <label class="form__field">
+                            <input class="form__input" type="text" name="subject" placeholder=" " required>
+                            <span class="form__label">Tema *</span>
+                        </label>
+                        <label class="form__field">
+                            <textarea class="form__input form__input--area" name="message" rows="5" placeholder=" " required></textarea>
+                            <span class="form__label">Mensaje *</span>
+                        </label>
+                        <button class="btn btn--primary form__submit" type="submit" data-magnetic>
+                            <span>Enviar mensaje</span>
+                            <span class="btn__arrow" aria-hidden="true">→</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
     <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__content">
-                <div class="footer__info">
-                    <h3 class="footer__name">Berries and Mango</h3>
-                    <p class="footer__title">Design Studio</p>
-                    <p class="footer__made-with">
-                        Hecho con <span class="footer__heart">❤️</span> usando HTML, CSS, JS y herramientas modernas de diseño.
-                    </p>
-                </div>
-                
-                <div class="footer__actions">
-                    <button class="footer__scroll-top" aria-label="Scroll to top">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="18,15 12,9 6,15"></polyline>
-                        </svg>
-                    </button>
-                    <p class="footer__copyright">© 2025 Berries and Mango. All rights reserved.</p>
-                </div>
-            </div>
-            
-            <div class="footer__bottom">
-                <p class="footer__tech">
-                    Built with modern web technologies for optimal performance and accessibility
-                </p>
-            </div>
+        <p class="footer__giant" aria-hidden="true" data-band="-0.5">Berries &amp; Mango</p>
+        <div class="footer__bar">
+            <p>© 2026 Berries and Mango · Design Studio</p>
+            <p>Hecho con <span class="footer__heart">♥</span> en Yucatán</p>
+            <a href="#home" class="footer__top" aria-label="Volver arriba">↑ Arriba</a>
         </div>
     </footer>
 
-    <script src="scripts/index.js"></script>
+    <script type="module" src="scripts/grass-world.js"></script>
+    <script src="scripts/parallax.js" defer></script>
+    <script src="scripts/index.js" defer></script>
 </body>
 </html>

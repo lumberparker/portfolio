@@ -1,0 +1,43 @@
+/* =========================================================
+   Block: loader
+   Brief intro veil while fonts and the 3D meadow boot.
+   ========================================================= */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 22px;
+    background: var(--ink);
+    transition: opacity 1.2s var(--ease), visibility 1.2s;
+}
+
+.loader.is-done {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader__seed {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--mango);
+    box-shadow: 0 0 30px 6px rgba(252, 173, 34, 0.6);
+    animation: seed-pulse 1.4s var(--ease) infinite;
+}
+
+.loader__text {
+    font: 400 12px/1 var(--font-mono);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+}
+
+@keyframes seed-pulse {
+    0%, 100% { transform: scale(1);   background: var(--mango); }
+    33%      { transform: scale(1.8); background: var(--berry); }
+    66%      { transform: scale(1.3); background: var(--violet); }
+}

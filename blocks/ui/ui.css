@@ -1,0 +1,170 @@
+/* =========================================================
+   Shared UI: glass panels, buttons, eyebrows, section heads,
+   brand stickers, scroll reveals.
+   ========================================================= */
+
+/* Frosted card that lets the meadow glow through */
+.glass {
+    position: relative;
+    background: var(--glass);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        inset 0 1px 0 var(--glass-hi),
+        0 30px 80px -40px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 28px;
+    border-radius: 999px;
+    border: 0;
+    font: 600 15px/1 var(--font-body);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), color 0.4s var(--ease);
+}
+
+.btn--primary {
+    color: var(--ink);
+    background: linear-gradient(100deg, var(--yolk), var(--mango) 45%, var(--berry));
+    background-size: 200% 100%;
+    box-shadow: 0 12px 40px -12px rgba(252, 173, 34, 0.7);
+    animation: btn-flow 6s ease-in-out infinite alternate;
+}
+
+.btn--primary:hover {
+    box-shadow: 0 18px 50px -10px rgba(236, 46, 124, 0.75);
+    color: var(--cream);
+}
+
+.btn--ghost {
+    color: var(--cream);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.btn__arrow {
+    display: inline-block;
+    transition: transform 0.4s var(--ease);
+}
+
+.btn:hover .btn__arrow {
+    transform: translateX(5px);
+}
+
+@keyframes btn-flow {
+    from { background-position: 0% 50%; }
+    to   { background-position: 100% 50%; }
+}
+
+/* ---------- Eyebrow + section head ---------- */
+.eyebrow {
+    font: 400 12px/1.4 var(--font-mono);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yolk);
+}
+
+.section-head {
+    max-width: 760px;
+    margin-bottom: clamp(48px, 7vw, 96px);
+}
+
+.section-head__title {
+    margin: 18px 0 16px;
+    font: 700 clamp(48px, 8vw, 112px)/0.95 var(--font-body);
+    letter-spacing: -0.04em;
+}
+
+.section-head__title em {
+    background: linear-gradient(90deg, var(--mango), var(--berry));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.08em;
+}
+
+.section-head__lede {
+    max-width: 520px;
+    color: var(--fg-muted);
+    font-size: 18px;
+}
+
+/* ---------- Brand stickers (SVG masks, tinted via --c) ---------- */
+.sticker {
+    display: block;
+    width: var(--s, 64px);
+    aspect-ratio: 1;
+    background: var(--c, var(--mango));
+    -webkit-mask: var(--m) center / contain no-repeat;
+    mask: var(--m) center / contain no-repeat;
+}
+
+.sticker--berry { --m: url('../../images/stickers/sticker-berry.svg'); }
+.sticker--mango { --m: url('../../images/stickers/sticker-mango.svg'); }
+.sticker--eye   { --m: url('../../images/stickers/sticker-eye.svg'); }
+.sticker--spark { --m: url('../../images/stickers/sticker-spark.svg'); }
+.sticker--amp   { --m: url('../../images/stickers/sticker-amp.svg'); }
+.sticker--blob  { --m: url('../../images/stickers/sticker-blob.svg'); }
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(48px);
+    filter: blur(6px);
+    transition:
+        opacity 1.1s var(--ease-out),
+        transform 1.1s var(--ease-out),
+        filter 1.1s var(--ease-out);
+    transition-delay: calc(var(--d, 0) * 110ms);
+}
+
+[data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+/* Tilt cards get a pointer-following glare */
+[data-tilt] {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+[data-tilt]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%),
+        color-mix(in srgb, var(--c, var(--mango)) 26%, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+    pointer-events: none;
+}
+
+[data-tilt]:hover::after {
+    opacity: 1;
+}
+
+.no-js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+}

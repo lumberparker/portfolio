@@ -1,0 +1,56 @@
+/* =========================================================
+   Block: band
+   Two giant rows that slide in opposite directions with
+   scroll (data-band speed, driven by parallax.js).
+   ========================================================= */
+
+.band {
+    position: relative;
+    z-index: 2;
+    padding: clamp(40px, 6vw, 80px) 0;
+    overflow: hidden;
+    transform: rotate(-3deg) scale(1.06);
+}
+
+.band__row {
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 3vw, 44px);
+    width: max-content;
+    font: 800 clamp(54px, 9vw, 140px)/1.05 var(--font-body);
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.band__row span:nth-of-type(6n + 1) { color: var(--yolk); }
+.band__row span:nth-of-type(6n + 2) { color: var(--cream); }
+.band__row span:nth-of-type(6n + 3) { color: var(--berry); }
+.band__row span:nth-of-type(6n + 4) { color: var(--mint); }
+.band__row span:nth-of-type(6n + 5) { color: var(--violet); }
+.band__row span:nth-of-type(6n)     { color: var(--coral); }
+
+.band__row i {
+    flex-shrink: 0;
+    width: 0.45em;
+    aspect-ratio: 1;
+    background: var(--mango);
+    -webkit-mask: url('../../images/stickers/sticker-spark.svg') center / contain no-repeat;
+    mask: url('../../images/stickers/sticker-spark.svg') center / contain no-repeat;
+}
+
+.band__row--outline {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+}
+
+.band__row--outline span {
+    color: transparent !important;
+    -webkit-text-stroke: 1.5px rgba(250, 249, 245, 0.55);
+}
+
+.band__row--outline i {
+    background: var(--berry);
+}
