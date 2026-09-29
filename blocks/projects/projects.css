@@ -25,6 +25,7 @@
 
 .project__media {
     position: relative;
+    display: block;  /* it's an <a>; on mobile the grid no longer blockifies it */
     grid-column: 1 / 9;
     grid-row: 1;
     aspect-ratio: 16 / 10;
