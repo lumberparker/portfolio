@@ -71,22 +71,6 @@
     transform: none;
 }
 
-.project__badge {
-    position: absolute;
-    left: 24px;
-    bottom: 24px;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: rgba(7, 4, 15, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--rule);
-    font: 400 12px/1 var(--font-mono);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--yolk);
-}
-
 /* XILA only has a small logo — present it on an animated brand field */
 .project__media--brand {
     display: grid;
@@ -189,12 +173,6 @@
     .project__body {
         margin: -60px 12px 0;
         position: relative;
-    }
-
-    .project__badge {
-        left: 16px;
-        top: 16px;
-        bottom: auto;
     }
 
     .project__visit {
