@@ -150,33 +150,6 @@
     opacity: 1;
 }
 
-/* ---------- Floating stickers ---------- */
-.hero__stickers {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.hero__stickers .sticker {
-    position: absolute;
-    left: var(--x);
-    top: var(--y);
-    opacity: 0;
-    transform: scale(0.4) rotate(var(--r));
-    filter: drop-shadow(0 0 24px color-mix(in srgb, var(--c) 60%, transparent));
-    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
-}
-
-.is-loaded .hero__stickers .sticker {
-    opacity: 0.9;
-    transform: scale(1) rotate(var(--r));
-}
-
-.hero__stickers .sticker:nth-child(2n) { transition-delay: 0.9s; }
-.hero__stickers .sticker:nth-child(2n + 1) { transition-delay: 1.15s; }
-
 /* ---------- Scroll cue ---------- */
 .hero__scroll {
     position: absolute;
@@ -236,10 +209,6 @@
 
     .hero__line--accent {
         padding-left: 0;
-    }
-
-    .hero__stickers .sticker {
-        width: calc(var(--s) * 0.6);
     }
 
     .hero__scroll-text {

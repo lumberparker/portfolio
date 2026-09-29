@@ -1,7 +1,7 @@
 /**
  * parallax.js
  * Everything that moves with scroll or pointer outside the 3D scene:
- *  - [data-depth]  hero layers: drift with scroll + lean toward the pointer
+ *  - [data-depth]  hero copy layers: drift with scroll + lean toward the pointer
  *  - [data-band]   giant type rows that slide sideways with scroll
  *  - [data-speed]  images that shift inside their frames
  *  - --veil        darkens the meadow while reading the middle sections
@@ -186,11 +186,8 @@
   }
 
   // ── Frame loop ───────────────────────────────────────────────────────
-  var t0 = performance.now();
-
-  function frame(now) {
+  function frame() {
     var y = window.scrollY;
-    var time = (now - t0) / 1000;
 
     pointer.x += (target.x - pointer.x) * 0.06;
     pointer.y += (target.y - pointer.y) * 0.06;
@@ -201,10 +198,8 @@
         for (var i = 0; i < depthEls.length; i++) {
           var el = depthEls[i];
           var d = parseFloat(el.dataset.depth);
-          var isSticker = el.classList.contains('sticker');
-          var bob = isSticker ? Math.sin(time * (0.6 + d * 0.4) + i) * 10 : 0;
-          var tx = pointer.x * d * (isSticker ? 60 : 18);
-          var ty = -y * d * 0.55 + pointer.y * d * (isSticker ? 40 : 10) + bob;
+          var tx = pointer.x * d * 18;
+          var ty = -y * d * 0.55 + pointer.y * d * 10;
           el.style.translate = tx.toFixed(1) + 'px ' + ty.toFixed(1) + 'px';
         }
       }
