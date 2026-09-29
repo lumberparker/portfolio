@@ -1,7 +1,7 @@
 /* =========================================================
    Block: contact
-   The camera has descended into the grass by now; channels
-   and the Netlify form float over it.
+   Back at the sunset: contact channels float over the grass.
+   The main CTA is the floating WhatsApp button.
    ========================================================= */
 
 .contact {
@@ -51,19 +51,14 @@
     animation: dot-ping 2.2s var(--ease) infinite;
 }
 
-.contact__grid {
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    gap: 20px;
-    align-items: start;
-}
-
 .contact__channels {
     display: grid;
-    gap: 12px;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 16px;
 }
 
 .channel {
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -93,6 +88,7 @@ a.channel:hover {
 }
 
 .contact__social {
+    grid-column: 1 / -1;
     display: flex;
     flex-wrap: wrap;
     gap: 8px 22px;
@@ -112,81 +108,8 @@ a.channel:hover {
     border-color: var(--yolk);
 }
 
-/* ---------- Form ---------- */
-.form {
-    display: grid;
-    gap: 14px;
-    padding: clamp(24px, 3.4vw, 44px);
-}
-
-.form__hp {
-    display: none;
-}
-
-.form__title {
-    margin-bottom: 8px;
-    font: 700 26px/1.1 var(--font-body);
-    letter-spacing: -0.02em;
-}
-
-.form__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-}
-
-.form__field {
-    position: relative;
-    display: block;
-}
-
-.form__input {
-    width: 100%;
-    padding: 26px 18px 10px;
-    border-radius: 14px;
-    border: 1px solid var(--rule);
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--cream);
-    font: 400 16px/1.4 var(--font-body);
-    transition: border-color 0.3s, background 0.3s;
-}
-
-.form__input--area {
-    resize: vertical;
-    min-height: 140px;
-}
-
-.form__input:focus {
-    outline: none;
-    border-color: var(--mango);
-    background: rgba(252, 173, 34, 0.06);
-}
-
-.form__label {
-    position: absolute;
-    left: 18px;
-    top: 18px;
-    font-size: 15px;
-    color: var(--fg-faint);
-    pointer-events: none;
-    transform-origin: left top;
-    transition: transform 0.3s var(--ease), color 0.3s;
-}
-
-.form__input:focus + .form__label,
-.form__input:not(:placeholder-shown) + .form__label {
-    transform: translateY(-10px) scale(0.75);
-    color: var(--yolk);
-}
-
-.form__submit {
-    justify-self: start;
-    margin-top: 6px;
-}
-
 @media (max-width: 860px) {
-    .contact__grid,
-    .form__row {
+    .contact__channels {
         grid-template-columns: 1fr;
     }
 }

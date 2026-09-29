@@ -282,60 +282,30 @@
                     <p class="contact__status" data-reveal><span class="contact__status-dot"></span>Disponible para nuevos proyectos</p>
                 </header>
 
-                <div class="contact__grid">
-                    <ul class="contact__channels">
-                        <li data-reveal style="--d:0">
-                            <a class="channel glass" href="mailto:rodney@berriesandmango.com" data-magnetic>
-                                <span class="channel__label">Email</span>
-                                <span class="channel__value">rodney@berriesandmango.com</span>
-                            </a>
-                        </li>
-                        <li data-reveal style="--d:1">
-                            <a class="channel glass" href="tel:+529993912818" data-magnetic>
-                                <span class="channel__label">Teléfono / WhatsApp</span>
-                                <span class="channel__value">+52 (999) 391-2828</span>
-                            </a>
-                        </li>
-                        <li data-reveal style="--d:2">
-                            <div class="channel glass">
-                                <span class="channel__label">Ubicación</span>
-                                <span class="channel__value">Mérida, Yucatán, MX</span>
-                            </div>
-                        </li>
-                        <li class="contact__social" data-reveal style="--d:3">
-                            <a href="https://www.linkedin.com/company/berries-and-mango" target="_blank" rel="noopener noreferrer">LinkedIn — Berries and Mango ↗</a>
-                            <a href="https://www.linkedin.com/in/rodney-p-3a2b73136/" target="_blank" rel="noopener noreferrer">LinkedIn — Rodney ↗</a>
-                        </li>
-                    </ul>
-
-                    <form class="form glass" name="contact" method="POST" action="/submit-form" data-netlify="true" netlify-honeypot="bot-field" data-reveal>
-                        <input type="hidden" name="form-name" value="contact">
-                        <p class="form__hp"><label>No llenar: <input name="bot-field"></label></p>
-                        <h3 class="form__title">Mándanos un mensaje</h3>
-                        <div class="form__row">
-                            <label class="form__field">
-                                <input class="form__input" type="text" name="name" placeholder=" " required autocomplete="name">
-                                <span class="form__label">Nombre *</span>
-                            </label>
-                            <label class="form__field">
-                                <input class="form__input" type="email" name="email" placeholder=" " required autocomplete="email">
-                                <span class="form__label">Email *</span>
-                            </label>
+                <ul class="contact__channels">
+                    <li data-reveal style="--d:0">
+                        <a class="channel glass" href="mailto:rodney@berriesandmango.com" data-magnetic>
+                            <span class="channel__label">Email</span>
+                            <span class="channel__value">rodney@berriesandmango.com</span>
+                        </a>
+                    </li>
+                    <li data-reveal style="--d:1">
+                        <a class="channel glass" href="https://wa.me/529993912818?text=Hola%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" data-magnetic>
+                            <span class="channel__label">Teléfono / WhatsApp</span>
+                            <span class="channel__value">+52 (999) 391-2818</span>
+                        </a>
+                    </li>
+                    <li data-reveal style="--d:2">
+                        <div class="channel glass">
+                            <span class="channel__label">Ubicación</span>
+                            <span class="channel__value">Mérida, Yucatán, MX</span>
                         </div>
-                        <label class="form__field">
-                            <input class="form__input" type="text" name="subject" placeholder=" " required>
-                            <span class="form__label">Tema *</span>
-                        </label>
-                        <label class="form__field">
-                            <textarea class="form__input form__input--area" name="message" rows="5" placeholder=" " required></textarea>
-                            <span class="form__label">Mensaje *</span>
-                        </label>
-                        <button class="btn btn--primary form__submit" type="submit" data-magnetic>
-                            <span>Enviar mensaje</span>
-                            <span class="btn__arrow" aria-hidden="true">→</span>
-                        </button>
-                    </form>
-                </div>
+                    </li>
+                    <li class="contact__social" data-reveal style="--d:3">
+                        <a href="https://www.linkedin.com/company/berries-and-mango" target="_blank" rel="noopener noreferrer">LinkedIn — Berries and Mango ↗</a>
+                        <a href="https://www.linkedin.com/in/rodney-p-3a2b73136/" target="_blank" rel="noopener noreferrer">LinkedIn — Rodney ↗</a>
+                    </li>
+            </ul>
             </div>
         </section>
     </main>
@@ -349,6 +319,12 @@
             <a href="#home" class="footer__top" aria-label="Volver arriba">↑ Arriba</a>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp CTA — always visible -->
+    <a class="whatsapp" href="https://wa.me/529993912818?text=Hola%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" aria-label="Trabajemos juntos por WhatsApp" data-magnetic>
+        <svg class="whatsapp__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 3C8.84 3 3 8.73 3 15.8c0 2.5.74 4.93 2.14 7L3 29l6.4-2.08a13.1 13.1 0 0 0 6.62 1.78h.01c7.18 0 13.02-5.73 13.02-12.8C29.05 8.73 23.2 3 16.02 3Zm7.58 18.08c-.32.9-1.88 1.72-2.6 1.83-.67.1-1.52.14-2.46-.16-.57-.18-1.3-.42-2.24-.82-3.95-1.67-6.52-5.58-6.72-5.85-.2-.27-1.6-2.12-1.6-4.05 0-1.93 1-2.88 1.36-3.27.36-.39.8-.48 1.06-.48.27 0 .53 0 .77.01.25.01.58-.1.91.7.32.77 1.08 2.67 1.18 2.86.1.2.16.43.03.7-.13.27-.2.43-.4.66-.2.23-.42.52-.6.7-.2.2-.4.42-.17.82.23.39 1.03 1.67 2.2 2.7 1.5 1.32 2.77 1.73 3.16 1.93.4.2.63.16.87-.1.23-.27 1-1.16 1.27-1.56.27-.39.53-.33.9-.2.36.13 2.3 1.07 2.7 1.27.4.2.67.3.77.46.1.16.1.92-.22 1.82Z"/></svg>
+        <span class="whatsapp__text">Trabajemos juntos</span>
+    </a>
 
     <script type="module" src="scripts/grass-world.js"></script>
     <script src="scripts/parallax.js" defer></script>

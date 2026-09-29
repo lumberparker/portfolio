@@ -1,0 +1,78 @@
+/* =========================================================
+   Block: whatsapp
+   Floating, always-visible CTA in the brand gradient.
+   ========================================================= */
+
+.whatsapp {
+    position: fixed;
+    right: clamp(16px, 3vw, 32px);
+    bottom: clamp(16px, 3vw, 32px);
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px 14px 16px;
+    border-radius: 999px;
+    color: var(--ink);
+    font: 700 15px/1 var(--font-body);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    background: linear-gradient(100deg, var(--yolk), var(--mango) 40%, var(--berry));
+    background-size: 200% 100%;
+    box-shadow:
+        0 14px 40px -10px rgba(236, 46, 124, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+    animation: btn-flow 6s ease-in-out infinite alternate;
+    opacity: 0;
+    translate: 0 20px;
+    transition:
+        opacity 0.8s var(--ease-out) 1.4s,
+        translate 0.8s var(--ease-out) 1.4s,
+        transform 0.5s var(--ease),
+        box-shadow 0.4s var(--ease),
+        color 0.4s var(--ease);
+}
+
+.is-loaded .whatsapp {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* Soft pulse ring to draw the eye */
+.whatsapp::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 rgba(252, 173, 34, 0.55);
+    animation: whatsapp-ping 2.6s var(--ease) infinite;
+}
+
+.whatsapp:hover {
+    color: var(--cream);
+    box-shadow:
+        0 18px 50px -8px rgba(236, 46, 124, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+}
+
+.whatsapp__icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--mint);
+}
+
+@keyframes whatsapp-ping {
+    70%, 100% { box-shadow: 0 0 0 16px rgba(252, 173, 34, 0); }
+}
+
+@media (max-width: 480px) {
+    .whatsapp {
+        padding: 12px 18px 12px 12px;
+        font-size: 14px;
+    }
+}
