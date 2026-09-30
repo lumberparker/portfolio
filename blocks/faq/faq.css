@@ -62,6 +62,11 @@
     color: var(--fg-muted);
 }
 
+.faq__answer a {
+    color: var(--yolk);
+    text-underline-offset: 3px;
+}
+
 .faq__answer p + p {
     margin-top: 12px;
 }

@@ -77,6 +77,10 @@
     transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
 }
 
+.services__express + .services__express {
+    margin-top: 12px;
+}
+
 .services__express:hover {
     border-color: rgba(252, 173, 34, 0.6);
     background: rgba(252, 173, 34, 0.08);
