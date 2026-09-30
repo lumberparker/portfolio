@@ -73,7 +73,7 @@
     setMenu(!header.classList.contains('header--open'));
   });
 
-  document.querySelectorAll('.header__link').forEach(function (link) {
+  document.querySelectorAll('.header__link, .header__sublink').forEach(function (link) {
     link.addEventListener('click', function () { setMenu(false); });
   });
 

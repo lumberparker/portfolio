@@ -101,9 +101,19 @@
                 <img class="header__brand-logo" src="images/logo.svg" alt="Berries and Mango" width="146" height="64">
             </a>
             <ul class="header__menu" id="headerMenu">
-                <li><a href="#home" class="header__link">Inicio</a></li>
+                <li><a href="#home" class="header__link">Desarrollo Web</a></li>
                 <li><a href="#about" class="header__link">Nosotros</a></li>
-                <li><a href="#services" class="header__link">Servicios</a></li>
+                <li class="header__item header__item--sub">
+                    <a href="#services" class="header__link">Servicios<span class="header__caret" aria-hidden="true"></span></a>
+                    <ul class="header__submenu" aria-label="Servicios">
+                        <li>
+                            <a href="/sitios-web-express/" class="header__sublink">
+                                <span class="header__sublink-title">Sitios Web Express</span>
+                                <span class="header__sublink-desc">Desde $2,500 MXN, a la carta</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li><a href="#projects" class="header__link">Proyectos</a></li>
             </ul>
             <a href="#contact" class="header__cta" data-magnetic>Trabajemos juntos</a>
