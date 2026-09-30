@@ -1,0 +1,52 @@
+/* =========================================================
+   Block: cta-band
+   Closing call to action before the footer.
+   ========================================================= */
+
+.cta-band {
+    padding: 0 var(--gutter) clamp(80px, 10vw, 140px);
+}
+
+.cta-band__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: clamp(32px, 5vw, 64px);
+    overflow: hidden;
+}
+
+.cta-band__inner::before {
+    content: "";
+    position: absolute;
+    inset: -40% -10% auto auto;
+    width: 60%;
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(252, 173, 34, 0.28), transparent 65%);
+    pointer-events: none;
+}
+
+.cta-band__title {
+    position: relative;
+    max-width: 16ch;
+    font: 800 clamp(36px, 5vw, 68px)/0.95 var(--font-body);
+    letter-spacing: -0.045em;
+}
+
+.cta-band__title em {
+    background: linear-gradient(95deg, var(--mint), var(--sky) 45%, var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.06em;
+}
+
+.cta-band__actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}

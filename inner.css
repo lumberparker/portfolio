@@ -1,0 +1,19 @@
+/* =========================================================
+   Berries and Mango — inner pages (services, case studies…)
+   Same tokens and components as the home page, but a static
+   meadow backdrop instead of the 3D scene: no Three.js, tiny JS.
+   ========================================================= */
+
+@import url('blocks/base/base.css');
+@import url('blocks/ui/ui.css');
+@import url('blocks/backdrop/backdrop.css');
+@import url('blocks/header/header.css');
+@import url('blocks/page-hero/page-hero.css');
+@import url('blocks/prose/prose.css');
+@import url('blocks/features/features.css');
+@import url('blocks/steps/steps.css');
+@import url('blocks/related/related.css');
+@import url('blocks/faq/faq.css');
+@import url('blocks/cta-band/cta-band.css');
+@import url('blocks/footer/footer.css');
+@import url('blocks/whatsapp/whatsapp.css');

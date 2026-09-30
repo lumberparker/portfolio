@@ -1,0 +1,70 @@
+/* =========================================================
+   Block: page-hero
+   Opening of an inner page: breadcrumb, eyebrow, H1, lede, CTAs.
+   ========================================================= */
+
+.page-hero {
+    padding: clamp(150px, 20vw, 220px) var(--gutter) clamp(64px, 9vw, 120px);
+}
+
+.page-hero__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.page-hero__crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+    font: 400 12px/1.4 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+}
+
+.page-hero__crumbs li + li::before {
+    content: "/";
+    margin-right: 8px;
+    color: var(--fg-faint);
+}
+
+.page-hero__crumbs a {
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.page-hero__crumbs a:hover {
+    color: var(--yolk);
+}
+
+.page-hero__title {
+    max-width: 14ch;
+    margin: 18px 0 24px;
+    font: 800 clamp(48px, 8.5vw, 128px)/0.9 var(--font-body);
+    letter-spacing: -0.05em;
+    text-shadow: 0 10px 60px rgba(7, 4, 15, 0.55);
+}
+
+.page-hero__title em {
+    background: linear-gradient(95deg, var(--yolk), var(--mango) 35%, var(--berry) 70%, var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.06em;
+}
+
+.page-hero__lede {
+    max-width: 620px;
+    font-size: clamp(17px, 1.5vw, 20px);
+    color: var(--fg-muted);
+    text-shadow: 0 2px 20px rgba(7, 4, 15, 0.8);
+}
+
+.page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 36px;
+}

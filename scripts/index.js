@@ -9,9 +9,11 @@
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // Only the home page has the 3D meadow; inner pages use a static backdrop
+  var hasMeadow = !!document.querySelector('.meadow');
 
   // Always open on the hero so the intro plays from the top
-  if ('scrollRestoration' in history && !location.hash) {
+  if (hasMeadow && 'scrollRestoration' in history && !location.hash) {
     history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
   }
@@ -24,17 +26,21 @@
   function reveal() {
     if (loaded) return;
     loaded = true;
-    var wait = Math.max(0, 700 - (performance.now() - started));
+    var wait = hasMeadow ? Math.max(0, 700 - (performance.now() - started)) : 0;
     setTimeout(function () {
       if (loader) loader.classList.add('is-done');
       root.classList.add('is-loaded');
     }, wait);
   }
 
-  window.addEventListener('meadow:ready', reveal);
-  window.addEventListener('meadow:fallback', reveal);
-  if (root.classList.contains('meadow-ready') || root.classList.contains('no-webgl')) reveal();
-  setTimeout(reveal, 2500);
+  if (!hasMeadow) {
+    reveal();
+  } else {
+    window.addEventListener('meadow:ready', reveal);
+    window.addEventListener('meadow:fallback', reveal);
+    if (root.classList.contains('meadow-ready') || root.classList.contains('no-webgl')) reveal();
+    setTimeout(reveal, 2500);
+  }
 
   // Stagger index for hero words
   document.querySelectorAll('.hero__word').forEach(function (w, i) {

@@ -1,0 +1,67 @@
+/* =========================================================
+   Block: faq
+   Native <details> accordion (works without JS). Pair it with
+   FAQPage JSON-LD in the page head.
+   ========================================================= */
+
+.faq {
+    padding: 0 var(--gutter) var(--section-y);
+}
+
+.faq__inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq__list {
+    display: grid;
+    gap: 12px;
+}
+
+.faq__item {
+    border-radius: var(--radius);
+}
+
+.faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 26px;
+    font: 600 clamp(17px, 1.6vw, 19px)/1.35 var(--font-body);
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq__question::-webkit-details-marker {
+    display: none;
+}
+
+.faq__question::after {
+    content: "+";
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    font: 400 20px/1 var(--font-body);
+    color: var(--yolk);
+    transition: transform 0.4s var(--ease), background 0.3s;
+}
+
+.faq__item[open] .faq__question::after {
+    transform: rotate(45deg);
+    background: rgba(252, 173, 34, 0.18);
+}
+
+.faq__answer {
+    padding: 0 26px 24px;
+    color: var(--fg-muted);
+}
+
+.faq__answer p + p {
+    margin-top: 12px;
+}

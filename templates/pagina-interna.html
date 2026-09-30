@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--
+    PLANTILLA — página interna (servicio o caso de estudio)
+
+    Para crear una página nueva:
+      1. Copia este archivo a /<slug>/index.html  (ej. /diseno-web-merida/index.html)
+      2. Reemplaza todo lo que esté entre [[ ]] — título, descripción, URL, textos
+      3. Quita el meta robots "noindex" de abajo
+      4. Borra los bloques que no uses (features, steps, related, faq…)
+      5. Si dejas el FAQ, actualiza también el JSON-LD FAQPage con las mismas preguntas
+      6. Agrega la URL a /sitemap.xml
+
+    Rutas siempre absolutas (/inner.css, /images/…) para que funcionen en cualquier carpeta.
+-->
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07040f">
+
+    <!-- La plantilla nunca debe indexarse. QUITAR en páginas reales. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>[[Título con la búsqueda principal]] | Berries and Mango</title>
+    <meta name="description" content="[[Descripción de 140–160 caracteres con la búsqueda principal y la ciudad.]]">
+    <link rel="canonical" href="https://web.berriesandmango.com/[[slug]]/">
+
+    <!-- Open Graph / redes -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Berries and Mango">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:url" content="https://web.berriesandmango.com/[[slug]]/">
+    <meta property="og:title" content="[[Título para compartir]]">
+    <meta property="og:description" content="[[Descripción para compartir]]">
+    <meta property="og:image" content="https://web.berriesandmango.com/images/og-berries-and-mango.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logotipo de Berries and Mango">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://web.berriesandmango.com/images/og-berries-and-mango.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+    <!-- Fondo: se precarga para que aparezca de inmediato -->
+    <link rel="preload" as="image" href="/images/backdrop/meadow-desktop.webp" type="image/webp" media="(min-aspect-ratio: 4/5)">
+    <link rel="preload" as="image" href="/images/backdrop/meadow-mobile.webp" type="image/webp" media="(max-aspect-ratio: 4/5)">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/inner.css">
+
+    <!-- Datos estructurados: breadcrumb + servicio + FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://web.berriesandmango.com/" },
+                    { "@type": "ListItem", "position": 2, "name": "[[Nombre corto de la página]]", "item": "https://web.berriesandmango.com/[[slug]]/" }
+                ]
+            },
+            {
+                "@type": "Service",
+                "name": "[[Nombre del servicio]]",
+                "serviceType": "[[Tipo de servicio]]",
+                "provider": { "@id": "https://web.berriesandmango.com/#studio" },
+                "areaServed": { "@type": "City", "name": "Mérida" },
+                "url": "https://web.berriesandmango.com/[[slug]]/"
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "[[Pregunta 1]]",
+                        "acceptedAnswer": { "@type": "Answer", "text": "[[Respuesta 1]]" }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "[[Pregunta 2]]",
+                        "acceptedAnswer": { "@type": "Answer", "text": "[[Respuesta 2]]" }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="page">
+
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <!-- Header (igual al inicio; los enlaces apuntan a secciones de la home) -->
+    <header class="header" id="header" data-header>
+        <nav class="header__nav" aria-label="Principal">
+            <a class="header__brand" href="/">
+                <img class="header__brand-logo" src="/images/logo.svg" alt="Berries and Mango — inicio" width="146" height="64">
+            </a>
+            <ul class="header__menu" id="headerMenu">
+                <li><a href="/" class="header__link">Inicio</a></li>
+                <li><a href="/#about" class="header__link">Nosotros</a></li>
+                <li><a href="/#services" class="header__link is-active">Servicios</a></li>
+                <li><a href="/#projects" class="header__link">Proyectos</a></li>
+            </ul>
+            <a href="/#contact" class="header__cta" data-magnetic>Trabajemos juntos</a>
+            <button class="header__toggle" id="headerToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="headerMenu">
+                <span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main id="top">
+        <!-- ===================== HERO ===================== -->
+        <section class="page-hero">
+            <div class="page-hero__inner">
+                <nav aria-label="Breadcrumb">
+                    <ol class="page-hero__crumbs">
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/#services">Servicios</a></li>
+                        <li aria-current="page">[[Nombre corto]]</li>
+                    </ol>
+                </nav>
+                <p class="eyebrow">[[Categoría · Ciudad]]</p>
+                <h1 class="page-hero__title">[[Búsqueda principal]] <em>[[remate]]</em></h1>
+                <p class="page-hero__lede">
+                    [[Uno o dos enunciados que respondan: qué ofreces, para quién y en dónde.
+                    Incluye la búsqueda principal de forma natural.]]
+                </p>
+                <div class="page-hero__actions">
+                    <a class="btn btn--primary" href="https://wa.me/529993912818?text=Hola%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" data-magnetic>
+                        <span>Cotizar por WhatsApp</span>
+                        <span class="btn__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="btn btn--ghost" href="/#projects" data-magnetic>Ver proyectos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== PROSE (texto largo para SEO) ===================== -->
+        <section class="prose">
+            <div class="prose__inner">
+                <article class="prose__body glass" data-reveal>
+                    <h2>[[Subtítulo H2 con una variación de la búsqueda]]</h2>
+                    <p>[[Párrafo. Escribe para personas: problema del cliente, cómo lo resuelves, por qué tú.]]</p>
+                    <p>[[Párrafo. Menciona la ciudad o región cuando sea natural. Enlaza a un <a href="/#projects">proyecto</a>.]]</p>
+
+                    <h3>[[Subtítulo H3]]</h3>
+                    <ul>
+                        <li>[[Beneficio o entregable]]</li>
+                        <li>[[Beneficio o entregable]]</li>
+                        <li>[[Beneficio o entregable]]</li>
+                    </ul>
+                </article>
+
+                <aside class="prose__aside glass" data-reveal style="--d:1">
+                    <p class="prose__aside-title">[[Dato clave]]</p>
+                    <p>[[Resumen breve: tiempo de entrega, qué incluye, desde cuánto.]]</p>
+                    <a class="btn btn--primary" href="https://wa.me/529993912818?text=Hola%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer">
+                        <span>Cotizar</span>
+                        <span class="btn__arrow" aria-hidden="true">→</span>
+                    </a>
+                </aside>
+            </div>
+        </section>
+
+        <!-- ===================== FEATURES ===================== -->
+        <section class="features">
+            <div class="features__inner">
+                <header class="section-head">
+                    <p class="eyebrow" data-reveal>[[Qué incluye]]</p>
+                    <h2 class="section-head__title" data-reveal>[[Título]] <em>[[remate]]</em></h2>
+                </header>
+                <div class="features__grid">
+                    <article class="features__card glass" data-reveal data-tilt style="--d:0; --c:var(--mango)">
+                        <span class="features__icon sticker sticker--mango" style="--c:var(--mango)" aria-hidden="true"></span>
+                        <h3 class="features__title">[[Beneficio]]</h3>
+                        <p class="features__text">[[Explicación corta.]]</p>
+                    </article>
+                    <article class="features__card glass" data-reveal data-tilt style="--d:1; --c:var(--berry)">
+                        <span class="features__icon sticker sticker--berry" style="--c:var(--berry)" aria-hidden="true"></span>
+                        <h3 class="features__title">[[Beneficio]]</h3>
+                        <p class="features__text">[[Explicación corta.]]</p>
+                    </article>
+                    <article class="features__card glass" data-reveal data-tilt style="--d:2; --c:var(--violet)">
+                        <span class="features__icon sticker sticker--eye" style="--c:var(--violet)" aria-hidden="true"></span>
+                        <h3 class="features__title">[[Beneficio]]</h3>
+                        <p class="features__text">[[Explicación corta.]]</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== STEPS ===================== -->
+        <section class="steps">
+            <div class="steps__inner">
+                <header class="section-head">
+                    <p class="eyebrow" data-reveal>Cómo trabajamos</p>
+                    <h2 class="section-head__title" data-reveal>Del brief al <em>lanzamiento</em></h2>
+                </header>
+                <ol class="steps__list">
+                    <li class="steps__item glass" data-reveal style="--d:0">
+                        <h3 class="steps__title">[[Paso]]</h3>
+                        <p class="steps__text">[[Qué pasa en este paso.]]</p>
+                    </li>
+                    <li class="steps__item glass" data-reveal style="--d:1">
+                        <h3 class="steps__title">[[Paso]]</h3>
+                        <p class="steps__text">[[Qué pasa en este paso.]]</p>
+                    </li>
+                    <li class="steps__item glass" data-reveal style="--d:2">
+                        <h3 class="steps__title">[[Paso]]</h3>
+                        <p class="steps__text">[[Qué pasa en este paso.]]</p>
+                    </li>
+                    <li class="steps__item glass" data-reveal style="--d:3">
+                        <h3 class="steps__title">[[Paso]]</h3>
+                        <p class="steps__text">[[Qué pasa en este paso.]]</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ===================== RELATED PROJECTS ===================== -->
+        <section class="related">
+            <div class="related__inner">
+                <header class="section-head">
+                    <p class="eyebrow" data-reveal>Proyectos relacionados</p>
+                    <h2 class="section-head__title" data-reveal>La <em>cosecha</em></h2>
+                </header>
+                <div class="related__grid">
+                    <a class="related__card glass" href="[[/proyectos/slug/]]" data-reveal style="--d:0">
+                        <div class="related__media"><img class="related__img" src="/images/hexaparks.jpeg" alt="[[Alt]]" loading="lazy" decoding="async" width="1600" height="720"></div>
+                        <div class="related__body">
+                            <h3 class="related__title">[[Proyecto]]</h3>
+                            <p class="related__meta">[[Industria · Tecnología]]</p>
+                        </div>
+                    </a>
+                    <a class="related__card glass" href="[[/proyectos/slug/]]" data-reveal style="--d:1">
+                        <div class="related__media"><img class="related__img" src="/images/kaizen.jpeg" alt="[[Alt]]" loading="lazy" decoding="async" width="1600" height="1000"></div>
+                        <div class="related__body">
+                            <h3 class="related__title">[[Proyecto]]</h3>
+                            <p class="related__meta">[[Industria · Tecnología]]</p>
+                        </div>
+                    </a>
+                    <a class="related__card glass" href="[[/proyectos/slug/]]" data-reveal style="--d:2">
+                        <div class="related__media"><img class="related__img" src="/images/indusmex.jpeg" alt="[[Alt]]" loading="lazy" decoding="async" width="1600" height="1000"></div>
+                        <div class="related__body">
+                            <h3 class="related__title">[[Proyecto]]</h3>
+                            <p class="related__meta">[[Industria · Tecnología]]</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== FAQ (mantener igual al JSON-LD FAQPage) ===================== -->
+        <section class="faq">
+            <div class="faq__inner">
+                <header class="section-head">
+                    <p class="eyebrow" data-reveal>Preguntas frecuentes</p>
+                    <h2 class="section-head__title" data-reveal>Lo que nos <em>preguntan</em></h2>
+                </header>
+                <div class="faq__list">
+                    <details class="faq__item glass" data-reveal>
+                        <summary class="faq__question">[[Pregunta 1]]</summary>
+                        <div class="faq__answer"><p>[[Respuesta 1]]</p></div>
+                    </details>
+                    <details class="faq__item glass" data-reveal style="--d:1">
+                        <summary class="faq__question">[[Pregunta 2]]</summary>
+                        <div class="faq__answer"><p>[[Respuesta 2]]</p></div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA ===================== -->
+        <section class="cta-band">
+            <div class="cta-band__inner glass" data-reveal>
+                <h2 class="cta-band__title">¿Sembramos algo <em>juntos</em>?</h2>
+                <div class="cta-band__actions">
+                    <a class="btn btn--primary" href="https://wa.me/529993912818?text=Hola%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" data-magnetic>
+                        <span>Escríbenos por WhatsApp</span>
+                        <span class="btn__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="btn btn--ghost" href="mailto:rodney@berriesandmango.com" data-magnetic>rodney@berriesandmango.com</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+        <p class="footer__giant" aria-hidden="true" data-band="-0.5">Berries &amp; Mango</p>
+        <div class="footer__bar">
+            <p>© 2026 Berries and Mango · Design Studio</p>
+            <p>Hecho con <span class="footer__heart">♥</span> en Yucatán</p>
+            <a href="#top" class="footer__top" aria-label="Volver arriba">↑ Arriba</a>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA — always visible -->
+    <a class="whatsapp" href="https://wa.me/529993912818?text=Hola%2C%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" aria-label="Trabajemos juntos por WhatsApp" data-magnetic>
+        <svg class="whatsapp__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 3C8.84 3 3 8.73 3 15.8c0 2.5.74 4.93 2.14 7L3 29l6.4-2.08a13.1 13.1 0 0 0 6.62 1.78h.01c7.18 0 13.02-5.73 13.02-12.8C29.05 8.73 23.2 3 16.02 3Zm7.58 18.08c-.32.9-1.88 1.72-2.6 1.83-.67.1-1.52.14-2.46-.16-.57-.18-1.3-.42-2.24-.82-3.95-1.67-6.52-5.58-6.72-5.85-.2-.27-1.6-2.12-1.6-4.05 0-1.93 1-2.88 1.36-3.27.36-.39.8-.48 1.06-.48.27 0 .53 0 .77.01.25.01.58-.1.91.7.32.77 1.08 2.67 1.18 2.86.1.2.16.43.03.7-.13.27-.2.43-.4.66-.2.23-.42.52-.6.7-.2.2-.4.42-.17.82.23.39 1.03 1.67 2.2 2.7 1.5 1.32 2.77 1.73 3.16 1.93.4.2.63.16.87-.1.23-.27 1-1.16 1.27-1.56.27-.39.53-.33.9-.2.36.13 2.3 1.07 2.7 1.27.4.2.67.3.77.46.1.16.1.92-.22 1.82Z"/></svg>
+        <span class="whatsapp__text">Trabajemos juntos</span>
+    </a>
+
+    <!-- Solo UI + parallax ligero del footer. Sin Three.js. -->
+    <script src="/scripts/parallax.js" defer></script>
+    <script src="/scripts/index.js" defer></script>
+</body>
+</html>

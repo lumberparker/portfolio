@@ -1,0 +1,58 @@
+/* =========================================================
+   Block: features
+   Grid of benefit / deliverable cards with a brand sticker.
+   ========================================================= */
+
+.features {
+    padding: 0 var(--gutter) var(--section-y);
+}
+
+.features__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.features__card {
+    padding: clamp(26px, 3vw, 36px);
+    overflow: hidden;
+    transition: border-color 0.5s var(--ease);
+}
+
+.features__card:hover {
+    border-color: color-mix(in srgb, var(--c, var(--mango)) 60%, transparent);
+}
+
+.features__icon {
+    --s: 52px;
+    margin-bottom: 36px;
+    filter: drop-shadow(0 0 18px color-mix(in srgb, var(--c) 55%, transparent));
+}
+
+.features__title {
+    margin-bottom: 10px;
+    font: 700 22px/1.15 var(--font-body);
+    letter-spacing: -0.02em;
+}
+
+.features__text {
+    font-size: 15.5px;
+    color: var(--fg-muted);
+}
+
+@media (max-width: 1000px) {
+    .features__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .features__grid {
+        grid-template-columns: 1fr;
+    }
+}
