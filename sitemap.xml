@@ -7,10 +7,16 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://web.berriesandmango.com/diseno-web-merida/</loc>
+        <loc>https://web.berriesandmango.com/diseno-web/</loc>
         <lastmod>2026-09-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://web.berriesandmango.com/diseno-web-merida/</loc>
+        <lastmod>2026-09-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://web.berriesandmango.com/sitios-web-express/</loc>
