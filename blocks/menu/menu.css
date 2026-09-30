@@ -1,0 +1,91 @@
+/* =========================================================
+   Block: menu
+   "A la carta" price list with dotted leaders, like a menu.
+   ========================================================= */
+
+.menu {
+    padding: 0 var(--gutter) var(--section-y);
+}
+
+.menu__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.menu__card {
+    padding: clamp(28px, 5vw, 56px);
+}
+
+.menu__group + .menu__group {
+    margin-top: 40px;
+}
+
+.menu__group-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 18px;
+    font: italic 400 clamp(26px, 3vw, 34px)/1.1 var(--font-display);
+    color: var(--yolk);
+}
+
+.menu__group-tag {
+    font: 400 11px/1 var(--font-mono);
+    font-style: normal;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+}
+
+.menu__list {
+    display: grid;
+    gap: 16px;
+}
+
+.menu__item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    column-gap: 12px;
+}
+
+.menu__name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.menu__dots {
+    border-bottom: 2px dotted var(--rule);
+    transform: translateY(-4px);
+}
+
+.menu__price {
+    font: 700 18px/1 var(--font-body);
+    color: var(--mango);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.menu__desc {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    font-size: 14.5px;
+    color: var(--fg-muted);
+}
+
+.menu__note {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font: 400 12px/1.6 var(--font-mono);
+    letter-spacing: 0.06em;
+    color: var(--fg-faint);
+}
+
+@media (max-width: 480px) {
+    .menu__name,
+    .menu__price {
+        font-size: 16px;
+    }
+}

@@ -95,6 +95,21 @@
     color: var(--yolk);
 }
 
+.prose__aside-price {
+    margin-bottom: 12px;
+    font: 800 clamp(44px, 5vw, 60px)/1 var(--font-body) !important;
+    letter-spacing: -0.04em;
+    background: linear-gradient(90deg, var(--yolk), var(--mango));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+.prose__aside-price span {
+    font-size: 0.35em;
+    letter-spacing: 0.02em;
+}
+
 .prose__aside p {
     font-size: 15px;
     color: var(--fg-muted);

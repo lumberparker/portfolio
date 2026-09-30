@@ -53,6 +53,7 @@
     background-clip: text;
     color: transparent;
     padding-right: 0.06em;
+    white-space: nowrap;  /* keep the highlighted phrase together */
 }
 
 .page-hero__lede {
