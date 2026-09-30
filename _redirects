@@ -1,0 +1,4 @@
+# Netlify rewrites (status 200 = same content, URL stays in the address bar)
+# /diseno-web-merida/ is a live mirror of /diseno-web/: edit only diseno-web/index.html
+/diseno-web-merida    /diseno-web/index.html    200
+/diseno-web-merida/   /diseno-web/index.html    200
