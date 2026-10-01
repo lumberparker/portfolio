@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4Z7M8RE13K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4Z7M8RE13K');
+
+      // Key actions: WhatsApp, email and jumps to the web studio site
+      document.addEventListener('click', function (e) {
+        var t = e.target;
+        var a = t.closest && t.closest('a[href]');
+        var href = a ? a.href : '';
+        if (/wa\.me\//.test(href)) {
+          gtag('event', 'whatsapp_click', { link_url: href, link_text: (a.textContent || '').trim().slice(0, 60) });
+        } else if (/^mailto:/.test(href)) {
+          gtag('event', 'email_click', { link_url: href });
+        } else if (location.hostname !== 'web.berriesandmango.com' &&
+                   (/^https:\/\/web\.berriesandmango\.com/.test(href) || (t.closest && t.closest('[data-web-row]')))) {
+          gtag('event', 'web_studio_click', { link_url: href || 'https://web.berriesandmango.com' });
+        }
+      }, true);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07040f">
+
+    <title>Portafolio de diseño web | Berries and Mango</title>
+    <meta name="description" content="Sitios web que hemos diseñado y desarrollado para marcas de todo México: corporativos, tiendas en línea, catálogos y sitios bilingües. Conoce la cosecha de Berries and Mango.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://web.berriesandmango.com/portafolio/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Berries and Mango">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:url" content="https://web.berriesandmango.com/portafolio/">
+    <meta property="og:title" content="La cosecha — Portafolio de diseño web | Berries and Mango">
+    <meta property="og:description" content="Sitios web para marcas de todo México: corporativos, tiendas en línea, catálogos y sitios bilingües.">
+    <meta property="og:image" content="https://web.berriesandmango.com/images/og-berries-and-mango.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logotipo de Berries and Mango">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="La cosecha — Portafolio de diseño web | Berries and Mango">
+    <meta name="twitter:description" content="Sitios web para marcas de todo México.">
+    <meta name="twitter:image" content="https://web.berriesandmango.com/images/og-berries-and-mango.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+    <link rel="preload" as="image" href="/images/backdrop/meadow-desktop.webp" type="image/webp" media="(min-aspect-ratio: 4/5)">
+    <link rel="preload" as="image" href="/images/backdrop/meadow-mobile.webp" type="image/webp" media="(max-aspect-ratio: 4/5)">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/inner.css">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://web.berriesandmango.com/" },
+                    { "@type": "ListItem", "position": 2, "name": "Portafolio", "item": "https://web.berriesandmango.com/portafolio/" }
+                ]
+            },
+            {
+                "@type": "CollectionPage",
+                "name": "Portafolio de diseño web — Berries and Mango",
+                "url": "https://web.berriesandmango.com/portafolio/",
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "item": { "@type": "CreativeWork", "name": "Hexaparks", "url": "https://hexaparks.com", "image": "https://web.berriesandmango.com/images/hexaparks.jpeg", "creator": { "@id": "https://web.berriesandmango.com/#studio" } } },
+                    { "@type": "ListItem", "position": 2, "item": { "@type": "CreativeWork", "name": "Drink XILA", "url": "https://drinkxila.com", "image": "https://web.berriesandmango.com/images/xila-site.jpeg", "creator": { "@id": "https://web.berriesandmango.com/#studio" } } },
+                    { "@type": "ListItem", "position": 3, "item": { "@type": "CreativeWork", "name": "KAIZEN®", "url": "https://kaizenconcreto.com", "image": "https://web.berriesandmango.com/images/kaizen.jpeg", "creator": { "@id": "https://web.berriesandmango.com/#studio" } } },
+                    { "@type": "ListItem", "position": 4, "item": { "@type": "CreativeWork", "name": "b'ui", "url": "https://buiwater.com", "image": "https://web.berriesandmango.com/images/buiwater.jpeg", "creator": { "@id": "https://web.berriesandmango.com/#studio" } } },
+                    { "@type": "ListItem", "position": 5, "item": { "@type": "CreativeWork", "name": "G&D Industrial-Mex", "url": "https://indusmex.com", "image": "https://web.berriesandmango.com/images/indusmex.jpeg", "creator": { "@id": "https://web.berriesandmango.com/#studio" } } },
+                    { "@type": "ListItem", "position": 6, "item": { "@type": "CreativeWork", "name": "Santillana Hintze Abogados", "url": "https://santillana-abogados.mx", "image": "https://web.berriesandmango.com/images/santillana.jpeg", "creator": { "@id": "https://web.berriesandmango.com/#studio" } } }
+                    ]
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body class="page">
+
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <header class="header" id="header" data-header>
+        <nav class="header__nav" aria-label="Principal">
+            <a class="header__brand" href="/">
+                <img class="header__brand-logo" src="/images/logo.svg" alt="Berries and Mango — inicio" width="146" height="64">
+            </a>
+            <ul class="header__menu" id="headerMenu">
+                <li><a href="/" class="header__link">Desarrollo Web</a></li>
+                <li><a href="/#about" class="header__link">Nosotros</a></li>
+                <li class="header__item header__item--sub">
+                    <a href="/#services" class="header__link">Servicios<span class="header__caret" aria-hidden="true"></span></a>
+                    <ul class="header__submenu" aria-label="Servicios">
+                        <li>
+                            <a href="/diseno-web/" class="header__sublink">
+                                <span class="header__sublink-title">Diseño web a la medida</span>
+                                <span class="header__sublink-desc">Proyectos únicos · cotización a la medida</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/sitios-web-express/" class="header__sublink">
+                                <span class="header__sublink-title">Sitios Web Express</span>
+                                <span class="header__sublink-desc">Desde $2,500 MXN, a la carta</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/portafolio/" class="header__link is-active" aria-current="page">Proyectos</a></li>
+            </ul>
+            <a href="https://wa.me/529993946353?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20sitio%20web%20a%20la%20medida." target="_blank" rel="noopener noreferrer" class="header__cta" data-magnetic>Cotizar</a>
+            <button class="header__toggle" id="headerToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="headerMenu">
+                <span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main id="top">
+        <!-- ===================== HERO ===================== -->
+        <section class="page-hero page-hero--folio">
+            <div class="page-hero__inner">
+                <nav aria-label="Breadcrumb">
+                    <ol class="page-hero__crumbs">
+                        <li><a href="/">Inicio</a></li>
+                        <li aria-current="page">Portafolio</li>
+                    </ol>
+                </nav>
+                <p class="eyebrow">Portafolio · Visual mixology para la web</p>
+                <h1 class="page-hero__title" data-mix>La cosecha</h1>
+                <p class="page-hero__lede">
+                    Sitios web que hemos sembrado para marcas de todo México: corporativos, tiendas en línea,
+                    catálogos y sitios bilingües. Cada uno, <strong>preparado a la medida</strong> de quien lo usa.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================== CARTA ===================== -->
+        <section class="carta" aria-labelledby="carta-title">
+            <div class="carta__paper">
+                <span class="carta__sticker carta__sticker--berry sticker sticker--berry" aria-hidden="true"></span>
+                <span class="carta__sticker carta__sticker--spark sticker sticker--spark" aria-hidden="true"></span>
+                <span class="carta__sticker carta__sticker--mango sticker sticker--mango" aria-hidden="true"></span>
+
+                <header class="carta__head">
+                    <div>
+                        <p class="carta__eyebrow">La carta de proyectos</p>
+                        <h2 class="carta__title" id="carta-title">Servidos a la medida, uno por uno.</h2>
+                    </div>
+                    <p class="carta__count" aria-label="6 proyectos">06</p>
+                </header>
+
+                <ol class="carta__list">
+                    <li class="carta__row" data-reveal>
+                        <a class="carta__link" href="https://hexaparks.com" target="_blank" rel="noopener noreferrer" data-preview="/images/hexaparks.jpeg" style="--c1:var(--peach); --c2:var(--coral)">
+                            <span class="carta__letter">A</span>
+                            <h3 class="carta__name">Hexaparks<span class="carta__kind">Parque industrial · Jalisco</span></h3>
+                            <img class="carta__thumb" src="/images/hexaparks.jpeg" alt="Sitio web de Hexaparks" loading="lazy" decoding="async" width="1600" height="1000">
+                            <p class="carta__desc">Sitio corporativo para un parque industrial: instalaciones, ubicación y una imagen sólida para atraer inversionistas.</p>
+                            <div class="carta__side">
+                                <ul class="carta__tags"><li>Corporativo</li><li>HTML · CSS · JS</li></ul>
+                                <span class="carta__visit">Ver sitio <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carta__row" data-reveal>
+                        <a class="carta__link" href="https://drinkxila.com" target="_blank" rel="noopener noreferrer" data-preview="/images/xila-site.jpeg" style="--c1:var(--coral); --c2:var(--berry)">
+                            <span class="carta__letter">B</span>
+                            <h3 class="carta__name">Drink XILA<span class="carta__kind">Aperitivo de mezcal</span></h3>
+                            <img class="carta__thumb" src="/images/xila-site.jpeg" alt="Sitio web de Drink XILA" loading="lazy" decoding="async" width="1600" height="1000">
+                            <p class="carta__desc">Tienda en línea en Shopify con tema a la medida, narrativa editorial y una experiencia pensada para vender desde el celular.</p>
+                            <div class="carta__side">
+                                <ul class="carta__tags"><li>E-commerce</li><li>Shopify</li></ul>
+                                <span class="carta__visit">Ver sitio <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carta__row" data-reveal>
+                        <a class="carta__link" href="https://kaizenconcreto.com" target="_blank" rel="noopener noreferrer" data-preview="/images/kaizen.jpeg" style="--c1:var(--sky); --c2:var(--violet)">
+                            <span class="carta__letter">C</span>
+                            <h3 class="carta__name">KAIZEN®<span class="carta__kind">Concreto premezclado · Guadalajara</span></h3>
+                            <img class="carta__thumb" src="/images/kaizen.jpeg" alt="Sitio web de KAIZEN®" loading="lazy" decoding="async" width="1600" height="1000">
+                            <p class="carta__desc">Sitio de cuatro páginas con catálogo de productos, escala interactiva de resistencias y galería de proyectos.</p>
+                            <div class="carta__side">
+                                <ul class="carta__tags"><li>Corporativo</li><li>Catálogo</li></ul>
+                                <span class="carta__visit">Ver sitio <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carta__row" data-reveal>
+                        <a class="carta__link" href="https://buiwater.com" target="_blank" rel="noopener noreferrer" data-preview="/images/buiwater.jpeg" style="--c1:var(--mint); --c2:var(--sky)">
+                            <span class="carta__letter">D</span>
+                            <h3 class="carta__name">b'ui<span class="carta__kind">Agua natural de manantial</span></h3>
+                            <img class="carta__thumb" src="/images/buiwater.jpeg" alt="Sitio web de b'ui" loading="lazy" decoding="async" width="1600" height="1000">
+                            <p class="carta__desc">Carrusel de productos, video de fondo y efectos de agua para presentar cada línea, incluida b'ui kids.</p>
+                            <div class="carta__side">
+                                <ul class="carta__tags"><li>Producto</li><li>Interacción</li></ul>
+                                <span class="carta__visit">Ver sitio <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carta__row" data-reveal>
+                        <a class="carta__link" href="https://indusmex.com" target="_blank" rel="noopener noreferrer" data-preview="/images/indusmex.jpeg" style="--c1:var(--mint); --c2:var(--yolk)">
+                            <span class="carta__letter">E</span>
+                            <h3 class="carta__name">G&amp;D Industrial-Mex<span class="carta__kind">Refacciones industriales</span></h3>
+                            <img class="carta__thumb" src="/images/indusmex.jpeg" alt="Sitio web de G&D Industrial-Mex" loading="lazy" decoding="async" width="1600" height="1000">
+                            <p class="carta__desc">Sitio corporativo con catálogo para un distribuidor con más de 50 años en la industria petrolera, cementera y minera.</p>
+                            <div class="carta__side">
+                                <ul class="carta__tags"><li>Corporativo</li><li>Catálogo</li></ul>
+                                <span class="carta__visit">Ver sitio <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="carta__row" data-reveal>
+                        <a class="carta__link" href="https://santillana-abogados.mx" target="_blank" rel="noopener noreferrer" data-preview="/images/santillana.jpeg" style="--c1:var(--yolk); --c2:var(--mango)">
+                            <span class="carta__letter">F</span>
+                            <h3 class="carta__name">Santillana Hintze Abogados<span class="carta__kind">Firma de derecho mexicano</span></h3>
+                            <img class="carta__thumb" src="/images/santillana.jpeg" alt="Sitio web de Santillana Hintze Abogados" loading="lazy" decoding="async" width="1600" height="1000">
+                            <p class="carta__desc">Sitio bilingüe con áreas de práctica, equipo y blog, con una imagen sobria y elegante a la altura del despacho.</p>
+                            <div class="carta__side">
+                                <ul class="carta__tags"><li>Bilingüe</li><li>WordPress</li></ul>
+                                <span class="carta__visit">Ver sitio <span aria-hidden="true">↗</span></span>
+                            </div>
+                        </a>
+                    </li>
+                </ol>
+
+                <p class="carta__note">
+                    <span>Diseño · desarrollo · lanzamiento</span>
+                    <a href="/diseno-web/">¿Quieres el tuyo? Diseño web a la medida →</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================== TICKER ===================== -->
+        <div class="ticker" aria-hidden="true">
+            <div class="ticker__track">
+                <div class="ticker__group"><span class="ticker__item">Hexaparks</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">Drink XILA</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">KAIZEN®</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">b'ui</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">G&amp;D Industrial-Mex</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">Santillana Hintze</span><span class="ticker__dot" aria-hidden="true"></span></div>
+                <div class="ticker__group"><span class="ticker__item">Hexaparks</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">Drink XILA</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">KAIZEN®</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">b'ui</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">G&amp;D Industrial-Mex</span><span class="ticker__dot" aria-hidden="true"></span><span class="ticker__item">Santillana Hintze</span><span class="ticker__dot" aria-hidden="true"></span></div>
+            </div>
+        </div>
+
+        <!-- ===================== CTA ===================== -->
+        <section class="cta-band">
+            <div class="cta-band__inner glass" data-reveal>
+                <h2 class="cta-band__title">¿Sembramos algo <em>juntos</em>?</h2>
+                <div class="cta-band__actions">
+                    <a class="btn btn--primary" href="https://wa.me/529993946353?text=Hola%2C%20vi%20su%20portafolio%20y%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" data-magnetic>
+                        <span>Escríbenos por WhatsApp</span>
+                        <span class="btn__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="btn btn--ghost" href="/sitios-web-express/" data-magnetic>Sitios Web Express</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__giant" aria-hidden="true" data-band="-0.5">Berries &amp; Mango</p>
+        <div class="footer__bar">
+            <p>© 2026 Berries and Mango · Design Studio</p>
+            <p>Hecho con <span class="footer__heart">♥</span> en Yucatán</p>
+            <a href="#top" class="footer__top" aria-label="Volver arriba">↑ Arriba</a>
+        </div>
+    </footer>
+
+    <a class="whatsapp" href="https://wa.me/529993946353?text=Hola%2C%20vi%20su%20portafolio%20y%20me%20gustar%C3%ADa%20platicar%20sobre%20un%20proyecto%20web." target="_blank" rel="noopener noreferrer" aria-label="Cotizar un sitio web por WhatsApp" data-magnetic>
+        <svg class="whatsapp__icon" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 3C8.84 3 3 8.73 3 15.8c0 2.5.74 4.93 2.14 7L3 29l6.4-2.08a13.1 13.1 0 0 0 6.62 1.78h.01c7.18 0 13.02-5.73 13.02-12.8C29.05 8.73 23.2 3 16.02 3Zm7.58 18.08c-.32.9-1.88 1.72-2.6 1.83-.67.1-1.52.14-2.46-.16-.57-.18-1.3-.42-2.24-.82-3.95-1.67-6.52-5.58-6.72-5.85-.2-.27-1.6-2.12-1.6-4.05 0-1.93 1-2.88 1.36-3.27.36-.39.8-.48 1.06-.48.27 0 .53 0 .77.01.25.01.58-.1.91.7.32.77 1.08 2.67 1.18 2.86.1.2.16.43.03.7-.13.27-.2.43-.4.66-.2.23-.42.52-.6.7-.2.2-.4.42-.17.82.23.39 1.03 1.67 2.2 2.7 1.5 1.32 2.77 1.73 3.16 1.93.4.2.63.16.87-.1.23-.27 1-1.16 1.27-1.56.27-.39.53-.33.9-.2.36.13 2.3 1.07 2.7 1.27.4.2.67.3.77.46.1.16.1.92-.22 1.82Z"/></svg>
+        <span class="whatsapp__text">Trabajemos juntos</span>
+    </a>
+
+    <script src="/scripts/parallax.js" defer></script>
+    <script src="/scripts/index.js" defer></script>
+    <script src="/scripts/portafolio.js" defer></script>
+</body>
+</html>

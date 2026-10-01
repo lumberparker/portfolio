@@ -1,0 +1,333 @@
+/* =========================================================
+   Block: carta
+   The portfolio "menu": a cream paper panel floating over the
+   meadow (berriesandmango.com vibe), with editorial project
+   rows. Desktop hover fills the row with the project's colors
+   and a screenshot follows the cursor (scripts/portafolio.js).
+   ========================================================= */
+
+.carta {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(8px, 2vw, 24px);
+}
+
+.carta__paper {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 110px) clamp(20px, 5vw, 80px) clamp(40px, 6vw, 90px);
+    border-radius: clamp(28px, 4vw, 56px);
+    background: var(--cream);
+    color: var(--ink);
+    box-shadow: 0 60px 120px -40px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+/* Stickers peeking from the paper corners */
+.carta__sticker {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.carta__sticker--berry { --s: clamp(70px, 9vw, 130px); --c: var(--berry); top: 22px; right: 5%; transform: rotate(14deg); }
+.carta__sticker--mango { --s: clamp(60px, 7vw, 110px); --c: var(--mango); bottom: 40px; left: -22px; transform: rotate(-18deg); }
+.carta__sticker--spark { --s: 34px; --c: var(--violet); top: 56px; right: 22%; }
+
+.carta__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+.carta__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font: 400 13px/1 var(--font-mono);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+}
+
+.carta__eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rust);
+}
+
+.carta__title {
+    max-width: 18ch;
+    font: italic 500 clamp(40px, 5.6vw, 84px)/1.02 var(--font-display);
+    letter-spacing: -0.025em;
+}
+
+.carta__count {
+    font: italic 400 clamp(70px, 10vw, 150px)/0.8 var(--font-display);
+    letter-spacing: -0.04em;
+    background: linear-gradient(120deg, var(--mango), var(--berry) 55%, var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.05em;
+}
+
+/* ---------- Rows ---------- */
+.carta__list {
+    border-top: 1.5px solid var(--ink);
+}
+
+.carta__row {
+    position: relative;
+    border-bottom: 1.5px solid var(--ink);
+}
+
+.carta__link {
+    position: relative;
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1.25fr) minmax(0, 1.6fr) auto;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 36px);
+    padding: clamp(24px, 3vw, 36px) 0;
+    color: inherit;
+    text-decoration: none;
+    isolation: isolate;
+    overflow: hidden;
+    transition: padding 0.5s var(--ease);
+}
+
+/* Project-colored wash that rises on hover (same move as berriesandmango.com) */
+.carta__link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, var(--c1), var(--c2));
+    transform: translateY(101%);
+    transition: transform 0.55s var(--ease);
+}
+
+.carta__letter {
+    font: 400 14px/1 var(--font-mono);
+    letter-spacing: 0.08em;
+}
+
+.carta__name {
+    font: italic 500 clamp(30px, 3.6vw, 56px)/1.02 var(--font-display);
+    letter-spacing: -0.02em;
+}
+
+.carta__kind {
+    display: block;
+    margin-top: 8px;
+    font: 400 12px/1.3 var(--font-mono);
+    font-style: normal;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    transition: color 0.4s var(--ease);
+}
+
+.carta__desc {
+    max-width: 52ch;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #5f5a63;
+    transition: color 0.4s var(--ease);
+}
+
+.carta__side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.carta__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+    max-width: 240px;
+}
+
+.carta__tags li {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--cream);
+    font: 400 11px/1.3 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+.carta__visit {
+    font: 400 12px/1 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.carta__visit span {
+    display: inline-block;
+    transition: transform 0.4s var(--ease);
+}
+
+.carta__thumb {
+    display: none;
+}
+
+@media (hover: hover) {
+    .carta__link:hover {
+        padding-inline: clamp(16px, 2vw, 28px);
+    }
+
+    .carta__link:hover::before {
+        transform: translateY(0);
+    }
+
+    .carta__link:hover .carta__desc,
+    .carta__link:hover .carta__kind {
+        color: rgba(7, 4, 15, 0.82);
+    }
+
+    .carta__link:hover .carta__tags li {
+        background: var(--cream);
+        color: var(--ink);
+    }
+
+    .carta__link:hover .carta__visit span {
+        transform: translate(3px, -3px);
+    }
+}
+
+.carta__link:focus-visible {
+    outline: 2px solid var(--berry);
+    outline-offset: -2px;
+}
+
+/* ---------- Cursor-following preview (desktop) ---------- */
+.carta-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    width: clamp(300px, 28vw, 440px);
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    scale: 0.85;
+    box-shadow: 0 40px 80px -24px rgba(7, 4, 15, 0.55);
+    transition: opacity 0.35s var(--ease), scale 0.45s var(--ease);
+    will-change: transform;
+}
+
+.carta-preview.is-visible {
+    opacity: 1;
+    scale: 1;
+}
+
+.carta-preview img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease);
+}
+
+.carta-preview img.is-active {
+    opacity: 1;
+}
+
+/* ---------- Footer note inside the paper ---------- */
+.carta__note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: clamp(32px, 4vw, 56px);
+    font: 400 12px/1.5 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5f5a63;
+}
+
+.carta__note a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--mango);
+    padding-bottom: 2px;
+}
+
+/* ---------- Tablet / mobile ---------- */
+@media (max-width: 900px) {
+    .carta__head {
+        grid-template-columns: 1fr;
+    }
+
+    .carta__count {
+        display: none;
+    }
+
+    .carta__link {
+        grid-template-columns: 36px 1fr;
+        grid-template-areas:
+            "letter name"
+            ".      thumb"
+            ".      desc"
+            ".      side";
+        gap: 14px 12px;
+        align-items: start;
+    }
+
+    .carta__letter { grid-area: letter; padding-top: 10px; }
+    .carta__name   { grid-area: name; }
+    .carta__desc   { grid-area: desc; font-size: 15px; }
+
+    .carta__thumb {
+        grid-area: thumb;
+        display: block;
+        width: 100%;
+        height: auto;  /* override the height attribute so aspect-ratio applies */
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: 14px;
+        box-shadow: 0 20px 40px -24px rgba(7, 4, 15, 0.5);
+    }
+
+    .carta__side {
+        grid-area: side;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .carta__tags {
+        justify-content: flex-start;
+        max-width: none;
+    }
+
+    .carta__visit {
+        color: var(--berry);
+    }
+
+    .carta-preview {
+        display: none;
+    }
+}

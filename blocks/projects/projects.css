@@ -184,3 +184,7 @@
         bottom: auto;
     }
 }
+
+.projects__all {
+    margin-top: clamp(64px, 8vw, 120px);
+}

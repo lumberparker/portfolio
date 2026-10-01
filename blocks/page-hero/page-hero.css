@@ -69,3 +69,33 @@
     gap: 14px;
     margin-top: 36px;
 }
+
+/* ---------- Portfolio variant: Visual Mixology headline ---------- */
+.page-hero--folio .page-hero__title {
+    max-width: none;
+    margin: 18px 0 28px;
+    font: italic 500 clamp(76px, 15vw, 230px)/0.88 var(--font-display);
+    letter-spacing: -0.035em;
+}
+
+/* Each letter gets a palette color from portafolio.js (data-mix) */
+.mix__char {
+    display: inline-block;
+    color: var(--mix, var(--cream));
+    opacity: 0;
+    transform: translateY(0.35em) rotate(6deg);
+    transition:
+        opacity 0.9s var(--ease-out),
+        transform 0.9s var(--ease-out);
+    transition-delay: calc(0.15s + var(--i, 0) * 55ms);
+}
+
+.is-loaded .mix__char {
+    opacity: 1;
+    transform: none;
+}
+
+.mix__char:hover {
+    transform: translateY(-0.08em) rotate(-4deg);
+    transition-delay: 0s;
+}

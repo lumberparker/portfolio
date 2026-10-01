@@ -1,0 +1,66 @@
+/* =========================================================
+   Block: ticker
+   Endless ribbon of client names in Visual Mixology colors,
+   tilted like a sticker band across the meadow.
+   ========================================================= */
+
+.ticker {
+    position: relative;
+    z-index: 2;
+    margin: clamp(56px, 8vw, 110px) 0;
+    padding: clamp(14px, 2vw, 22px) 0;
+    background: var(--cream);
+    transform: rotate(-2.5deg) scale(1.04);
+    overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+.ticker__track {
+    display: flex;
+    width: max-content;
+    animation: ticker-roll 38s linear infinite;
+}
+
+.ticker__group {
+    display: flex;
+    align-items: center;
+    gap: clamp(22px, 3vw, 44px);
+    padding-right: clamp(22px, 3vw, 44px);
+}
+
+.ticker__item {
+    font: italic 500 clamp(34px, 5vw, 72px)/1.1 var(--font-display);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+/* Items sit at odd positions (dots in between), so cycle every 12 */
+.ticker__item:nth-child(12n + 1)  { color: var(--rust); }
+.ticker__item:nth-child(12n + 3)  { color: var(--berry); }
+.ticker__item:nth-child(12n + 5)  { color: var(--violet); }
+.ticker__item:nth-child(12n + 7)  { color: #3aa57c; }
+.ticker__item:nth-child(12n + 9)  { color: var(--mango); }
+.ticker__item:nth-child(12n + 11) { color: var(--ink); }
+
+.ticker__dot {
+    flex-shrink: 0;
+    width: clamp(18px, 2vw, 28px);
+    aspect-ratio: 1;
+    background: var(--mango);
+    -webkit-mask: url('../../images/stickers/sticker-spark.svg') center / contain no-repeat;
+    mask: url('../../images/stickers/sticker-spark.svg') center / contain no-repeat;
+}
+
+.ticker:hover .ticker__track {
+    animation-play-state: paused;
+}
+
+@keyframes ticker-roll {
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+        animation: none;
+    }
+}
