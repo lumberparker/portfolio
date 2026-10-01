@@ -14,6 +14,30 @@
 -->
 <html lang="es-MX">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4Z7M8RE13K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4Z7M8RE13K');
+
+      // Key actions: WhatsApp, email and jumps to the web studio site
+      document.addEventListener('click', function (e) {
+        var t = e.target;
+        var a = t.closest && t.closest('a[href]');
+        var href = a ? a.href : '';
+        if (/wa\.me\//.test(href)) {
+          gtag('event', 'whatsapp_click', { link_url: href, link_text: (a.textContent || '').trim().slice(0, 60) });
+        } else if (/^mailto:/.test(href)) {
+          gtag('event', 'email_click', { link_url: href });
+        } else if (location.hostname !== 'web.berriesandmango.com' &&
+                   (/^https:\/\/web\.berriesandmango\.com/.test(href) || (t.closest && t.closest('[data-web-row]')))) {
+          gtag('event', 'web_studio_click', { link_url: href || 'https://web.berriesandmango.com' });
+        }
+      }, true);
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#07040f">
